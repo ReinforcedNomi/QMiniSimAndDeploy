@@ -10,7 +10,16 @@
 
 
 
-
 ## 常用操作记录
 
 ## 解压
+
+## 编译
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=../../../install/x64/
+make
+make install
+
+
+
