@@ -5,18 +5,21 @@ add_executable(
         "${CMAKE_CURRENT_LIST_DIR}/user/rl_controller.cpp")
 
 # 找库
-find_package(Python3 REQUIRED COMPONENTS Development)
-if(Python3_FOUND)
-    message(STATUS "Found Python3: ${Python3_EXECUTABLE} (version ${Python3_VERSION})")
-else()
-    message(FATAL_ERROR "Python3 not found.")
-endif()
+# find_package(Python3 REQUIRED COMPONENTS Development)
+# if(Python3_FOUND)
+#     message(STATUS "Found Python3: ${Python3_EXECUTABLE} (version ${Python3_VERSION})")
+#     message(STATUS "Python3_INCLUDE_DIRS: ${Python3_INCLUDE_DIRS}")
+#     message(STATUS "Python3_LIBRARIES: ${Python3_LIBRARIES}")
+# else()
+#     message(FATAL_ERROR "Python3 not found.")
+# endif()
 
 
 # include 部分
 target_include_directories(run_interface 
     PUBLIC 
-        "${Python3_INCLUDE_DIRS}"
+        # "${Python3_INCLUDE_DIRS}"
+        "/usr/include/python3.10"
         "${CMAKE_PROJECT_ROOT_DIR}/install/${CMAKE_SYSTEM_PROCESSOR}/include/ddscxx")
 
 
@@ -31,12 +34,12 @@ target_link_libraries(
         jsoncpp
         ddsc
         ddscxx
-        jsoncp
         onnxruntime
         unitree_sdk2
         UnitreeMotorSDK_Linux64
         yaml-cpp
-        ${Python3_LIBRARIES}
+        # ${Python3_LIBRARIES}
+        python3.10
 )
 target_link_libraries(
     run_interface

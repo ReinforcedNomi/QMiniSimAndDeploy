@@ -37,7 +37,7 @@ class G1 {
 public:
     explicit G1(const std::string &networkInterface, bool is_test_local) : PRorAB_mode_(PR),
                                                                            mode_machine_(0) {
-
+        uint8_t a = 1;
         ChannelFactory::Instance()->Init(0, networkInterface);
         std::cout << "Initialize channel factory." << std::endl;
         _is_test_local = is_test_local;
