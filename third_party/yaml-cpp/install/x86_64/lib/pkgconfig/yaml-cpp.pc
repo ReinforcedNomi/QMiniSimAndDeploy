@@ -1,0 +1,11 @@
+prefix=/root/zhaoshucheng_dir/20251121_Embodied_Peoject/QMiniSimAndDeploy/third_party/yaml-cpp/install/x86_64
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: Yaml-cpp
+Description: A YAML parser and emitter for C++
+Version: 0.6.3
+Requires:
+Libs: -L${libdir} -lyaml-cpp
+Cflags: -I${includedir}

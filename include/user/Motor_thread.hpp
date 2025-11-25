@@ -18,13 +18,18 @@ struct SerialGroup {
     std::vector<int> motorIDs;
 };
 
+// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if00-port0 -> ../../ttyUSB1
+// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if01-port0 -> ../../ttyUSB2
+// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if02-port0 -> ../../ttyUSB3
+// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if03-port0 -> ../../ttyUSB4
+
 class MotorController {
 public:
     std::vector<SerialGroup> serialGroups = {
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FT9CC6WH-if03-port0", {0,5}},
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FT9CC6WH-if01-port0", {1,6}},
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FT9CC6WH-if00-port0", {2, 3, 4}},
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FT9CC6WH-if02-port0", {7, 8, 9}}
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if00-port0", {0,5}},
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if01-port0", {1,6}},
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if02-port0", {2, 3, 4}},
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if03-port0", {7, 8, 9}}
     };
     MotorController() {
         InitializeSerialPorts();
