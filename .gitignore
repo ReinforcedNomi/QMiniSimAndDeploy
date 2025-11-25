@@ -4,7 +4,6 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o
 *.obj
 
 # Precompiled Headers
@@ -28,7 +27,6 @@
 # Compiled Static libraries
 *.lai
 *.la
-*.a
 *.lib
 
 # Executables
@@ -37,3 +35,7 @@
 
 # debug information files
 *.dwo
+.vscode/
+build/
+
+

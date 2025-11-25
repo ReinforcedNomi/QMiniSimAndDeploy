@@ -48,3 +48,7 @@ mkdir build-arm
 cd build-arm
 cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain-arm.cmake ..
 make
+
+## 运行
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:install/x86_64/lib/
+./install/x86_64/bin/test_lib
