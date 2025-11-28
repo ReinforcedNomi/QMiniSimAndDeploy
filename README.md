@@ -146,10 +146,28 @@ cmake \
 make
 make install
 
+### 复制额外的文件
 
+调试过程中，发现 g1 相关的 include 文件在第三方依赖库中找不到，所以就手工复制过去
+
+cp -r install/x86_64/include/unitree/g1 install/aarch64/include/unitree/
+
+
+#### 编译自己的代码
+cd 项目根目录
+mkdir build
+cd build
+cmake \
+    -DCMAKE_TOOLCHAIN_FILE=../cmake_toolchain/toolchain-JetsonNano.cmake \
+    -DCMAKE_INSTALL_PREFIX=../install/aarch64/ \
+    ..
+make
+make install
 
 
 ## 运行
+
+### x86_64
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:install/x86_64/lib/
 ./install/x86_64/bin/test_lib
@@ -157,5 +175,13 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:install/x86_64/lib/
 export CROSS_COMPILE=/root/zhaoshucheng_dir/20251121_Embodied_Peoject/QMiniSimAndDeploy/aarch64--glibc--stable-2022.08-1/aarch64--glibc--stable-2022.08-1/bin/aarch64-buildroot-linux-gnu-
 
 /root/zhaoshucheng_dir/20251121_Embodied_Peoject/QMiniSimAndDeploy/aarch64--glibc--stable-2022.08-1/aarch64--glibc--stable-2022.08-1/bin/aarch64-buildroot-linux-gnu-c++.br_real
+
+### aarch64
+
+ssh qmini@10.168.1.160
+// 给 串口加权限
+cd /home/qmini/Programs
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:install/aarch64/lib/
+./install/aarch64/bin/run_interface
 
 

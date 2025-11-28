@@ -1,3 +1,19 @@
+# 变量声明
+
+set(MY_UnitreeMotorSDK_NAME "")    # 宇树的预编译库
+
+
+# 判断 CMAKE_SYSTEM_PROCESSOR 给 MY_UnitreeMotorSDK_NAME 赋值
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "aarch64")
+    set(MY_UnitreeMotorSDK_NAME "UnitreeMotorSDK_Arm64")
+elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+    set(MY_UnitreeMotorSDK_NAME "UnitreeMotorSDK_Linux64")
+else()
+    message(FATAL_ERROR "Unsupported system processor: ${CMAKE_SYSTEM_PROCESSOR}")
+endif()
+
+
+
 add_executable(
     run_interface 
         "${CMAKE_CURRENT_LIST_DIR}/run_interface.cpp"
@@ -36,7 +52,7 @@ target_link_libraries(
         ddscxx
         onnxruntime
         unitree_sdk2
-        UnitreeMotorSDK_Linux64
+        ${MY_UnitreeMotorSDK_NAME}
         yaml-cpp
         # ${Python3_LIBRARIES}
         python3.10
