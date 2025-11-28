@@ -18,4 +18,4 @@ include_directories(${CMAKE_PROJECT_ROOT_DIR}/install/${CMAKE_SYSTEM_PROCESSOR}/
 
 # 添加 subdir
 add_subdirectory(${CMAKE_PROJECT_ROOT_DIR}/test)
-add_subdirectory(${CMAKE_PROJECT_ROOT_DIR}/src)
+# add_subdirectory(${CMAKE_PROJECT_ROOT_DIR}/src)

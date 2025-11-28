@@ -15,7 +15,7 @@ project(YAML_CPP VERSION 0.6.3)
 ### Project options
 ###
 ## Project stuff
-option(YAML_CPP_BUILD_TESTS "Enable testing" ON)
+option(YAML_CPP_BUILD_TESTS "Enable testing" OFF)
 option(YAML_CPP_BUILD_TOOLS "Enable parse tools" ON)
 option(YAML_CPP_BUILD_CONTRIB "Enable contrib stuff in library" ON)
 option(YAML_CPP_INSTALL "Enable generation of install target" ON)
@@ -24,7 +24,7 @@ option(YAML_CPP_INSTALL "Enable generation of install target" ON)
 # --> General
 # see http://www.cmake.org/cmake/help/cmake2.6docs.html#variable:BUILD_SHARED_LIBS
 #     http://www.cmake.org/cmake/help/cmake2.6docs.html#command:add_library
-option(YAML_BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
+option(YAML_BUILD_SHARED_LIBS "Build Shared Libraries" ON)
 
 # --> Apple
 if(APPLE)
