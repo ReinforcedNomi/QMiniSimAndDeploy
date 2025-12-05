@@ -1,0 +1,2178 @@
+Usage networkInterface: lo of Q1 robot 
+Start motor thread： Done!
+1764928116.752988 [0] run_interf: selected interface "lo" is not multicast-capable: disabling multicast
+Initialize channel factory.
+Reset done! Rpy: 0 0 0
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+
+Reset observation history: Done!
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[32mCurrent mode: folding...
+[0m[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.15, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.15, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.15, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.15, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.14, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.14, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.15, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.15, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+Q: [ -0.02, -0.36, -0.45, -0.48, -0.14, -0.26, 0.14, -0.30, -0.51, -0.20 ]
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=2 does not reply
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=0 does not reply
+Traceback (most recent call last):
+  File "/home/bird/Qmini-main/QMiniSimAndDeploy/./joystick.py", line 108, in read_joystick
+    joy.getjoystickstates()
+  File "/home/bird/Qmini-main/QMiniSimAndDeploy/./joystick.py", line 61, in getjoystickstates
+    self.START = self.joystick.get_button(11)
+pygame.error: Invalid joystick button
+Reset done! Rpy: 0.00 0.00 0.00
+
+Reset observation history: Done!
+[WARNING] SerialPort::recv, unblock version, wait time out
+[WARNING] motor id=1 does not reply

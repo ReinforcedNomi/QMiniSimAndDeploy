@@ -101,7 +101,14 @@ public:
 
     void InitializeSerialPorts() {
         for(std::vector<SerialGroup>::iterator group = serialGroups.begin(); group != serialGroups.end(); ++group) {
-            std::unique_ptr<SerialPort> port = std::make_unique<SerialPort>(group->port);
+            // 增加超时时间从 20ms 到 50ms，减少通信超时警告
+            std::unique_ptr<SerialPort> port = std::make_unique<SerialPort>(
+                group->port,
+                16,        // recvLength
+                4000000,   // baudrate
+                50000,     // timeOutUs: 从 20000 (20ms) 增加到 50000 (50ms)
+                BlockYN::NO
+            );
             serialPorts.push_back(std::move(port));
         }
     }
@@ -125,6 +132,9 @@ public:
                 data.motorType = MotorType::GO_M8010_6;
                 serial.sendRecv(&cmd, &data);
                 ParseMotorFeedback(data, *motorID);
+                
+                // 添加小延迟，避免同一串口上多个电机通信冲突
+                std::this_thread::sleep_for(std::chrono::microseconds(200));
             }
             td.count++;
           }
