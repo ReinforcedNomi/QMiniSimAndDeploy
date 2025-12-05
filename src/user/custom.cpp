@@ -35,8 +35,18 @@ void G1::Control() {
             dataReporter.close();
             usleep(1e3);
             exit(1);
+        case 'x':
+            ///X键 电机泄力模式
+            // 不修改 _kp 和 _kd 的值，只在 set_rl_joint_act2dds_motor_command 中设置电机命令的 kp 和 kd 为 0
+            // 保持当前关节位置，但将kp和kd设为0，实现泄力
+            break;
         case '2':
             ///to stand
+            // 从配置恢复 KP 和 Kd 的值（如果之前被修改了）
+            for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
+                rlController->_kp[i] = rlController->configParams.kp.at(i);
+                rlController->_kd[i] = rlController->configParams.kd.at(i);
+            }
             rlController->stand_control(ratio);
             break;
         case '3':

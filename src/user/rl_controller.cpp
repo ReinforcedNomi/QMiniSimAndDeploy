@@ -163,7 +163,8 @@ void RLController::set_rl_joint_act2dds_motor_command(char mode) {
     MotorCommand motor_command_tmp;
     for (int i = 0; i < NUM_JOINTS; ++i) {
         motor_command_tmp.q_target[i] = joint_act[jointIndex2Sim[i]];
-        if (mode=='q') {
+        if (mode=='q' || mode=='x') {
+            // q: 退出程序, x: 电机泄力
             motor_command_tmp.kp[i] = 0.;
             motor_command_tmp.kd[i] = 0.;
         } else if (mode=='1') {

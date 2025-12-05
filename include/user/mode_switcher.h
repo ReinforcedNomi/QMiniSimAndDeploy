@@ -80,9 +80,8 @@ public:
         } else if ((int) jsreader.But[3] == 1) {///Y motion
             rl_task_mode = 3;
             key = '3';
-        }else if ((int) jsreader.But[2] == 1) {///RL stand
-            rl_task_mode = 4;
-            key = '4';
+        }else if ((int) jsreader.But[2] == 1) {///X 电机泄力
+            key = 'x';  // x 表示泄力模式
         } else if ((int) jsreader.But[8] == 1) {///SELECT sin test
             rl_task_mode = 5;
             key = '5';
@@ -99,8 +98,8 @@ public:
             rl_task_mode = 9;
             key = '9';
         } else if ((int) jsreader.But[1] == 1) { key = 'q'; } //B exit
-        if (key == 'q')
-            return key;
+        if (key == 'q' || key == 'x')
+            return key;  // q 和 x 可以直接切换，不需要安全检查
         if (key >= '1') {
             if (std::abs(min(key, '3') - min(mode, '3')) <= 1 or mode>='3') {
                 if (key>='3' and key !='5')
@@ -164,6 +163,9 @@ public:
                 break;
             case '4':
                 printf("\033[32mCurrent mode: sin waving(step in place)...\n\033[0m");
+                break;
+            case 'x':
+                printf("\033[33mCurrent mode: motor relax (电机泄力)...\n\033[0m");
                 break;
             default:
                 break;
