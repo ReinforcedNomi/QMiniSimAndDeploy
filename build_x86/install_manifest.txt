@@ -1,0 +1,2 @@
+/home/bird/Qmini-main/QMiniSimAndDeploy/install/x64/bin/test_lib
+/home/bird/Qmini-main/QMiniSimAndDeploy/install/x64/bin/run_interface

@@ -3,6 +3,7 @@
 //
 
 #include "user/custom.hpp"
+#include <iomanip>
 
 
 void G1::ModeProcess() {
@@ -59,7 +60,15 @@ void G1::Control() {
     control_count++;
     if (control_count % 150 == 0) {
         control_count = 0;
-        cout << "q: " << rlController->joint_pos.transpose() << endl;
+        // 格式化输出关节位置，保留两位小数
+        cout << "Q: [ ";
+        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
+            cout << std::fixed << std::setprecision(2) << rlController->joint_pos[i];
+            if (i < rlController->NUM_JOINTS - 1) {
+                cout << ", ";
+            }
+        }
+        cout << " ]" << endl;
 //        cout << "rpy: " << rlController->base_rpy.transpose() << endl;
     }
 }

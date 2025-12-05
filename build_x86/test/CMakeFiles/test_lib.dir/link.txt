@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/test_lib.dir/test_lib.cpp.o -o test_lib   -L/home/bird/Qmini-main/QMiniSimAndDeploy/install/x86_64/lib  -Wl,-rpath,/home/bird/Qmini-main/QMiniSimAndDeploy/install/x86_64/lib: -ljsoncpp

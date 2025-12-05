@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/bird/Qmini-main/QMiniSimAndDeploy/build_x86/cmake_install.cmake",
+		"/home/bird/Qmini-main/QMiniSimAndDeploy/build_x86/test/cmake_install.cmake",
+		"/home/bird/Qmini-main/QMiniSimAndDeploy/build_x86/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
