@@ -142,6 +142,16 @@ public:
 
     void ModeProcess();
 
+    /**
+     * @brief 打印当前关节位置（YAML格式），用于设置零位
+     * 
+     * 使用方法：
+     * 1. 将机器人调整到想要的零位姿态
+     * 2. 调用此函数打印当前关节位置
+     * 3. 复制输出的YAML格式内容到config.yaml的ref_joint_act字段
+     */
+    void PrintCurrentJointPositionAsZero();
+
 private:
     ChannelPublisherPtr<unitree_hg::msg::dds_::LowCmd_> lowcmd_publisher_;
     ChannelSubscriberPtr<unitree_hg::msg::dds_::LowState_> lowstate_subscriber_;

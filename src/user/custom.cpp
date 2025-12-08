@@ -152,3 +152,26 @@ void G1::IMUStateReader() {
         std::cerr << "Failed to fetch IMU data" << std::endl;
     }
 }
+
+/**
+ * @brief 打印当前关节位置（YAML格式），用于设置零位
+ * 
+ * 使用方法：
+ * 1. 将机器人调整到想要的零位姿态
+ * 2. 在代码中调用此函数，或从终端触发
+ * 3. 复制输出的YAML格式内容到config.yaml的ref_joint_act字段
+ */
+void G1::PrintCurrentJointPositionAsZero() {
+    rlController->convert_dds_state2rl_state();  // 确保获取最新关节位置
+    cout << "\n========== 当前关节位置（零位设置） ==========" << endl;
+    cout << "# 将以下内容复制到 config.yaml 的 ref_joint_act 字段：" << endl;
+    cout << "ref_joint_act: [ ";
+    for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
+        cout << std::fixed << std::setprecision(3) << rlController->joint_pos[i];
+        if (i < rlController->NUM_JOINTS - 1) {
+            cout << ", ";
+        }
+    }
+    cout << " ]" << endl;
+    cout << "===============================================\n" << endl;
+}
