@@ -1,0 +1,118 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+*.map
+
+# Debugger Files
+*.pdb
+*.su
+*.idb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.a
+*.lai
+*.la
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+run_interface
+test_lib
+
+# Build directories
+build/
+build_*/
+build_x86/
+build_x86_64/
+build_aarch64/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+Makefile
+*.cmake
+!CMakeLists.txt
+!cmake_toolchain/*.cmake
+
+# Install directories
+install/
+jetson_nano_rootfs/
+aarch64--glibc--stable-2022.08-1/
+third_party/
+tool/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Log files
+*.log
+qmini_log.log
+
+# Test files
+*.gcov
+*.gcda
+*.gcno
+
+# Archive files (keep source, ignore extracted)
+*.zip
+*.tgz
+*.tar.gz
+*.rar
+third_party/eigen-*.zip
+third_party/jsoncpp-*.zip
+third_party/yaml-cpp-*.zip
+third_party/onnxruntime-*.tgz
+third_party/unitree_*.zip
+third_party/*.zip
+third_party/*.tgz
+third_party/*.tar.gz
+
+# Third party extracted directories (if they have their own git)
+# Uncomment if you want to ignore third party source code
+# third_party/eigen/
+# third_party/jsoncpp/
+# third_party/yaml-cpp/
+# third_party/onnxruntime/
+# tool/unitree_actuator_sdk-main/
+
+# Debug information files
+*.dwo
+*.dwp
+
