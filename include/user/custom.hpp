@@ -167,7 +167,7 @@ private:
     float control_dt_ = 0.01f;
     float relative_time = 0.f;
     int control_count = 0;
-    float MOVE_DURATION = 6.f;  // 增加回零时间从3秒到5秒，使运动更平滑
+    float MOVE_DURATION = 4.f;  // 增加回零时间从3秒到5秒，使运动更平滑
 
     // multithreading
     ThreadPtr command_writer_ptr_;
