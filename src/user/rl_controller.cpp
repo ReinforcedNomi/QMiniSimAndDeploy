@@ -73,7 +73,10 @@ void RLController::init() {
         _kd[i] = configParams.kd.at(i);                        // 速度阻尼系数
         _kp_soft[i] = configParams.kp_soft.at(i);              // 软控制位置刚度
         _kd_soft[i] = configParams.kd_soft.at(i);              // 软控制速度阻尼
+        _torque_limit[i] = configParams.torque_limit.at(i);    // 力矩上限
     }
+    torque_exceed_duration.setZero();  // 初始化力矩超过持续时间
+    _torque_protection_active = false;  // 初始化力矩保护状态
     joint_act = _ref_joint_act;  // 初始关节动作设为参考位置
     
     // ========== 初始化观测向量和堆叠缓冲区 ==========
@@ -96,6 +99,8 @@ void RLController::reset(bool is_test_local) {
     _is_first_run = true;
     counter_rl = 0;
     joint_vel_target.setZero();  // 重置速度目标
+    torque_exceed_duration.setZero();  // 重置力矩超过持续时间
+    _torque_protection_active = false;  // 重置力矩保护状态
     if (is_test_local) {
         init_joint_act = joint_act;
         joint_pos = joint_act;
@@ -285,10 +290,52 @@ void RLController::joystick_command_process() {
 
 void RLController::set_rl_joint_act2dds_motor_command(char mode) {
     MotorCommand motor_command_tmp;
+    
+    // ========== 力矩保护检查 ==========
+    bool torque_protection_triggered = false;
+    if (configParams.enable_torque_protection) {
+        for (int i = 0; i < NUM_JOINTS; ++i) {
+            float abs_tau = std::abs(joint_tau[jointIndex2Sim[i]]);
+            if (abs_tau > _torque_limit[jointIndex2Sim[i]]) {
+                // 力矩超过阈值，增加持续时间计数
+                torque_exceed_duration[jointIndex2Sim[i]] += _rl_time_step;
+                
+                // 如果持续时间超过阈值，触发保护
+                if (torque_exceed_duration[jointIndex2Sim[i]] >= configParams.torque_protection_duration) {
+                    torque_protection_triggered = true;
+                    _torque_protection_active = true;
+                    // 打印警告（限制频率，每秒最多1次）
+                    static int warning_counter = 0;
+                    static int warning_interval = static_cast<int>(1.0 / _rl_time_step);  // 每秒1次
+                    if (warning_counter % warning_interval == 0) {
+                        std::cerr << "[WARNING] 力矩保护触发！关节 " << i 
+                                  << " 力矩: " << joint_tau[jointIndex2Sim[i]] 
+                                  << " N·m，超过限制: " << _torque_limit[jointIndex2Sim[i]] 
+                                  << " N·m，自动泄力！" << std::endl;
+                    }
+                    warning_counter++;
+                }
+            } else {
+                // 力矩正常，重置持续时间计数
+                torque_exceed_duration[jointIndex2Sim[i]] = 0.0f;
+            }
+        }
+        
+        // 如果所有关节力矩都正常，重置保护状态
+        if (torque_exceed_duration.cwiseAbs().maxCoeff() < 1e-6f) {
+            _torque_protection_active = false;
+        }
+    }
+    
+    // 如果力矩保护被触发，强制切换到泄力模式（类似mode=='x'）
+    if (torque_protection_triggered) {
+        mode = 'x';
+    }
+    
     for (int i = 0; i < NUM_JOINTS; ++i) {
         motor_command_tmp.q_target[i] = joint_act[jointIndex2Sim[i]];
         if (mode=='q' || mode=='x') {
-            // q: 退出程序, x: 电机泄力
+            // q: 退出程序, x: 电机泄力（或力矩保护触发）
             motor_command_tmp.kp[i] = 0.;
             motor_command_tmp.kd[i] = 0.;
         } else if (mode=='1') {

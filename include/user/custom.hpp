@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string>
+#include <stdexcept>
+#include <cstdlib>
 #include <Python.h>
 #include "unitree/common/thread/thread.hpp"
 
@@ -58,8 +60,18 @@ public:
         rlController->jsreader=&modeSwitcher.jsreader;
 
 
-        if (rlController->configParams.use_sim_gait)
-            ReadTxtFile::get_data_to_vector(rlController->sim_gait_data);
+        if (rlController->configParams.use_sim_gait) {
+            try {
+                ReadTxtFile::get_data_to_vector(rlController->sim_gait_data);
+            } catch (const std::exception& e) {
+                std::cerr << "\033[31m[FATAL ERROR] Failed to load gait_data.txt file!\033[0m" << std::endl;
+                std::cerr << "\033[31m[FATAL ERROR] " << e.what() << "\033[0m" << std::endl;
+                std::cerr << "\033[33m[SOLUTION] Please either:\033[0m" << std::endl;
+                std::cerr << "\033[33m   1. Create the file: data/gait_data.txt\033[0m" << std::endl;
+                std::cerr << "\033[33m   2. Set use_sim_gait: false in config.yaml\033[0m" << std::endl;
+                exit(1);
+            }
+        }
 
         ///h1 control 0.01s
         // 0.01s 顶层控制选择

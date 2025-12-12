@@ -49,6 +49,25 @@ public:
         } else {
             onnx_model_path = "policy.onnx";  // 默认路径
         }
+        
+        // 力矩保护参数
+        if (params["enable_torque_protection"]) {
+            enable_torque_protection = params["enable_torque_protection"].as<bool>();
+        } else {
+            enable_torque_protection = false;  // 默认关闭
+        }
+        
+        if (params["torque_limit"]) {
+            torque_limit = params["torque_limit"].as < std::vector < float > > ();
+        } else {
+            torque_limit = std::vector<float>(10, 12.0f);  // 默认12.0 N·m
+        }
+        
+        if (params["torque_protection_duration"]) {
+            torque_protection_duration = params["torque_protection_duration"].as<float>();
+        } else {
+            torque_protection_duration = 0.5f;  // 默认0.5秒
+        }
     }
 
 public:
@@ -80,6 +99,11 @@ public:
     std::vector<float> ref_joint_act = {0.};
     
     std::string onnx_model_path = "policy.onnx";  // ONNX模型文件路径
+    
+    // 力矩保护参数
+    bool enable_torque_protection = false;  // 是否启用力矩保护
+    std::vector<float> torque_limit = {12.0f};  // 力矩上限 (N·m)
+    float torque_protection_duration = 0.5f;  // 力矩超过阈值后持续多长时间才触发保护 (秒)
 
 };
 

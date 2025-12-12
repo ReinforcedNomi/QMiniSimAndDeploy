@@ -68,8 +68,10 @@ void G1::Control() {
     }
     rlController->set_rl_joint_act2dds_motor_command(current_mode);
     control_count++;
-    // 控制周期为0.01秒(10ms)，0.2秒 = 20个周期，所以每20次打印一次
-    if (control_count % 20 == 0) {
+    // 控制周期为control_dt秒，每秒1次 = 1.0 / control_dt 次
+    // 例如：control_dt=0.015秒，则每秒约67次，即每67次打印一次
+    int print_interval = static_cast<int>(1.0 / control_dt_);  // 每秒1次
+    if (control_count % print_interval == 0) {
         control_count = 0;
         // 格式化输出当前关节位置，保留两位小数
         cout << "Q: [ ";
@@ -113,7 +115,7 @@ void G1::RecordMotorState(const std::array<MotorData, 10> &data) {
         ms_tmp.q.at(i) = data[i].q;
         ms_tmp.dq.at(i) = data[i].dq;
         ms_tmp.ddq.at(i) = 0.;
-        ms_tmp.tau_est.at(i) = 0.;
+        ms_tmp.tau_est.at(i) = data[i].tau;  // 修复：从电机数据读取真实的力矩值，而不是设为0
     }
     motor_state_buffer_.SetData(ms_tmp);
 //    std::cout << "q: " << ms_tmp.q.at(0)<<endl;

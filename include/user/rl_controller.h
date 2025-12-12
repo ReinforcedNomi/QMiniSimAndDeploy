@@ -56,6 +56,11 @@ public:
 
     Vec10<float> _kp, _kd;
     Vec10<float> _kp_soft, _kd_soft;
+    
+    // 力矩保护相关
+    Vec10<float> _torque_limit;  // 力矩上限
+    Vec10<float> torque_exceed_duration;  // 力矩超过阈值的持续时间
+    bool _torque_protection_active = false;  // 力矩保护是否已激活
 
     ConfigParams configParams;
 

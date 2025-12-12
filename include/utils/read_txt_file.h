@@ -11,6 +11,7 @@
 #include <vector>
 #include <cassert>
 #include <sstream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -21,7 +22,11 @@ public:
     static void get_data_to_vector(vector<vector<float>> &data) {
         ifstream infile;
         infile.open("data/gait_data.txt");
-        assert(infile.is_open());
+        if (!infile.is_open()) {
+            cerr << "[ERROR] Cannot open file: data/gait_data.txt" << endl;
+            cerr << "[ERROR] Please create the file or set use_sim_gait: false in config.yaml" << endl;
+            throw runtime_error("Failed to open gait_data.txt file");
+        }
         vector<float> temp;
         string s;
         while (getline(infile, s)) {
