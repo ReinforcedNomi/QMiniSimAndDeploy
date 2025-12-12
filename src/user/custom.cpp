@@ -40,6 +40,16 @@ void G1::Control() {
             // 不修改 _kp 和 _kd 的值，只在 set_rl_joint_act2dds_motor_command 中设置电机命令的 kp 和 kd 为 0
             // 保持当前关节位置，但将kp和kd设为0，实现泄力
             break;
+        case 'r':
+            ///R键 电机软件复位（清除故障码）
+            // 通过模式切换（BRAKE -> FOC）来清除故障码，无需断电重启
+            // 复位期间保持泄力模式（kp=kd=0），复位完成后需要手动切换到其他模式
+            // 注意：复位完成后不会自动切换，用户可以手动切换到其他模式（如'2'stand模式）
+            if (!Motor_control.IsResetting()) {
+                Motor_control.SoftwareReset();
+                std::cout << "\033[36m[Motor Reset] Reset initiated. After completion, press '2' for stand mode\033[0m" << std::endl;
+            }
+            break;
         case '2':
             ///to stand
             // 从配置恢复 KP 和 Kd 的值（如果之前被修改了）
@@ -92,7 +102,46 @@ void G1::Control() {
             }
         }
         cout << " ]" << endl;
-        cout << endl;  // N输出后添加空行
+        
+        // 格式化输出实时输出扭矩，保留两位小数
+        cout << "F: [ ";
+        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
+            cout << std::fixed << std::setprecision(2) << rlController->joint_tau[i];
+            if (i < rlController->NUM_JOINTS - 1) {
+                cout << ", ";
+            }
+        }
+        cout << " ]" << endl;
+        
+        // 检查并输出错误码（仅在有关节报错时输出）
+        const std::array<MotorData, 10> &motor_data = Motor_control.GetData();
+        bool has_error = false;
+        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
+            // 验证错误码在合理范围内（0-7），过滤异常值
+            int merror_value = motor_data[i].merror;
+            if (merror_value > 0 && merror_value <= 7) {
+                has_error = true;
+                break;
+            }
+        }
+        if (has_error) {
+            cout << "E: [ ";
+            for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
+                int merror_value = motor_data[i].merror;
+                // 如果错误码超出范围，显示为0（表示无法解析或数据异常）
+                if (merror_value < 0 || merror_value > 7) {
+                    cout << 0;
+                } else {
+                    cout << merror_value;
+                }
+                if (i < rlController->NUM_JOINTS - 1) {
+                    cout << ", ";
+                }
+            }
+            cout << " ]" << endl;
+        }
+        
+        cout << endl;  // 输出后添加空行
 //        cout << "rpy: " << rlController->base_rpy.transpose() << endl;
     }
 }

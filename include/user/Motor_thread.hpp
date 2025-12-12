@@ -181,9 +181,36 @@ public:
         std::cout << std::endl;
     }
 
+    // 软件复位相关成员变量
+    std::atomic<bool> reset_in_progress{false};
+    std::chrono::time_point<std::chrono::steady_clock> reset_start_time;
+    static constexpr int RESET_DURATION_MS = 500; // 复位持续时间500ms
+    
     void ConfigureMotorCommand(MotorCmd& cmd, int motorID, const unitree_hg::msg::dds_::LowCmd_& dds_low_command) {
         cmd.motorType = MotorType::GO_M8010_6;
-        cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::FOC);
+        
+        // 如果正在软件复位，先切换到BRAKE模式，然后再切换回FOC模式
+        if (reset_in_progress) {
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::steady_clock::now() - reset_start_time).count();
+            
+            if (elapsed < RESET_DURATION_MS / 2) {
+                // 前250ms：切换到BRAKE模式（锁定模式）
+                cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::BRAKE);
+            } else {
+                // 后250ms：切换回FOC模式
+                cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::FOC);
+                
+                if (elapsed >= RESET_DURATION_MS) {
+                    // 复位完成
+                    reset_in_progress = false;
+                    std::cout << "\033[32m[Motor Reset] Software reset completed for all motors\033[0m" << std::endl;
+                }
+            }
+        } else {
+            cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::FOC);
+        }
+        
         cmd.id = CalculateChannelID(motorID);
         cmd.kp = dds_low_command.motor_cmd().at(motorID).kp();
         cmd.kd = dds_low_command.motor_cmd().at(motorID).kd();
@@ -195,6 +222,24 @@ public:
         cmd.q = (dds_low_command.motor_cmd().at(motorID).q() + Startq[motorID]) * ratio;
         cmd.dq = dds_low_command.motor_cmd().at(motorID).dq() * ratio;
     }
+    
+    // 软件复位函数：通过模式切换清除故障码
+    void SoftwareReset() {
+        if (reset_in_progress) {
+            std::cout << "\033[33m[Motor Reset] Reset already in progress, please wait...\033[0m" << std::endl;
+            return;
+        }
+        
+        reset_in_progress = true;
+        reset_start_time = std::chrono::steady_clock::now();
+        std::cout << "\033[33m[Motor Reset] Starting software reset (BRAKE -> FOC mode switch)...\033[0m" << std::endl;
+        std::cout << "\033[33m[Motor Reset] This will take approximately " << RESET_DURATION_MS << "ms\033[0m" << std::endl;
+    }
+    
+    // 检查是否正在复位
+    bool IsResetting() const {
+        return reset_in_progress;
+    }
 
     void ParseMotorFeedback(MotorData& data, int motorID) {
         const bool is_special = IsSpecialMotor(motorID);
@@ -203,6 +248,15 @@ public:
         allMotorData.at(motorID).q = data.q / ratio - Startq[motorID];
         allMotorData.at(motorID).dq = data.dq / ratio;
         allMotorData.at(motorID).tau = data.tau;  // 保存力矩数据
+        // 确保merror值在合理范围内（0-7），因为MError是3位位域
+        // 如果merror值异常，可能是未初始化或读取错误，将其限制在有效范围内
+        int merror_value = data.merror;
+        if (merror_value < 0 || merror_value > 7) {
+            // 值异常，可能是未初始化，设为0（正常状态）
+            allMotorData.at(motorID).merror = 0;
+        } else {
+            allMotorData.at(motorID).merror = merror_value;
+        }
     }
 
     const std::array<MotorData, 10> &GetData() const {

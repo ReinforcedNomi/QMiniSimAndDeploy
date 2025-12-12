@@ -2,4 +2,4 @@
 
 pkill -9 -f run_interface
 
-python plot_qmini_log.py   
+# python plot_qmini_log.py   
