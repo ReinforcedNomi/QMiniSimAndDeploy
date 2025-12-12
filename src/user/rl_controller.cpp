@@ -27,10 +27,10 @@ void RLController::init() {
     // 加载ONNX模型文件并创建推理会话
     // 参数说明：
     //   - env: ONNX Runtime环境
-    //   - "policy.onnx": 模型文件路径（相对路径，需确保在运行目录下存在）
+    //   - configParams.onnx_model_path: 模型文件路径（从config.yaml读取）
     //   - session_options: 会话配置选项
     // 注意：模型在程序启动时一次性加载到内存，后续推理直接使用此会话
-    motion_session = new Ort::Session(env, "policy.onnx", session_options);
+    motion_session = new Ort::Session(env, configParams.onnx_model_path.c_str(), session_options);
     
     // ========== 初始化ONNX推理器 ==========
     // 初始化推理器，设置输入/输出维度（从config.yaml读取）

@@ -7,6 +7,7 @@
 
 #include <yaml-cpp/yaml.h>
 #include <yaml-cpp/node/parse.h>
+#include <string>
 
 
 class ConfigParams {
@@ -41,6 +42,13 @@ public:
         act_pos_low = params["act_pos_low"].as < std::vector < float > > ();
 
         ref_joint_act = params["ref_joint_act"].as < std::vector < float > > ();
+        
+        // ONNX模型路径，如果配置文件中没有则使用默认值
+        if (params["onnx_model_path"]) {
+            onnx_model_path = params["onnx_model_path"].as<std::string>();
+        } else {
+            onnx_model_path = "policy.onnx";  // 默认路径
+        }
     }
 
 public:
@@ -70,6 +78,8 @@ public:
     std::vector<float> act_pos_low = {0.};
 
     std::vector<float> ref_joint_act = {0.};
+    
+    std::string onnx_model_path = "policy.onnx";  // ONNX模型文件路径
 
 };
 

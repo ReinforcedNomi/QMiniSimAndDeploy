@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from matplotlib import rcParams
 import sys
 import os
+from datetime import datetime
 
 # 设置中文字体支持
 rcParams['font.sans-serif'] = ['DejaVu Sans', 'SimHei', 'Arial Unicode MS']
@@ -164,7 +165,12 @@ def plot_all_joints_together(q_data, n_data, save_path=None):
     plt.legend(loc='best', fontsize=9, ncol=2)
     
     if save_path:
-        save_path_all = save_path.replace('.png', '_all_joints.png')
+        # 从原始保存路径提取目录和时间戳，生成新的文件名
+        log_dir = os.path.dirname(save_path)
+        base_filename = os.path.basename(save_path)
+        # 提取时间戳部分（Joint_log_YYMM_DD_HH_MM.png -> YYMM_DD_HH_MM）
+        timestamp_part = base_filename.replace('Joint_log_', '').replace('.png', '')
+        save_path_all = os.path.join(log_dir, f'Joint_log_{timestamp_part}_all_joints.png')
         plt.savefig(save_path_all, dpi=150, bbox_inches='tight')
         print(f"所有关节图片已保存到: {save_path_all}")
     
@@ -202,8 +208,15 @@ def main():
         print("警告: 没有找到有效数据")
         return
     
-    # 保存路径
-    save_path = log_file_path.replace('.log', '_joint_plot.png')
+    # 创建 joint_log 目录（如果不存在）
+    log_dir = os.path.join(os.path.dirname(log_file_path), 'joint_log')
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # 生成带时间戳的文件名（格式：Joint_log_YYMM_DD_HH_MM.png）
+    now = datetime.now()
+    timestamp = now.strftime('%y%m_%d_%H_%M')
+    filename = f'Joint_log_{timestamp}.png'
+    save_path = os.path.join(log_dir, filename)
     
     # 绘制分关节图
     print("正在绘制分关节波形图...")
