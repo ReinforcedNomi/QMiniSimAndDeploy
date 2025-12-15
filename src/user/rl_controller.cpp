@@ -55,7 +55,7 @@ void RLController::init() {
     base_rpy_rate.setZero();     // 基座角速度
     target_command.setZero();    // 目标速度命令 (vx, yr)
     joint_pos_error.setZero();   // 关节位置误差
-    pm_f.setConstant(0.5f);      // 相位频率，初始化为0.5Hz
+    pm_f.setConstant(configParams.initial_gait_frequency);  // 相位频率，从配置文件读取初始频率
     _pm_phase << 0, 0;           // 相位角，初始化为0
     pm_phase_sin_cos.setZero();  // 相位的sin和cos值
     joint_vel_target.setZero();  // 目标关节速度（用于回零时的速度前馈）
@@ -93,7 +93,7 @@ void RLController::init() {
 }
 
 void RLController::reset(bool is_test_local) {
-    pm_f.setConstant(0.5f);
+    pm_f.setConstant(configParams.initial_gait_frequency);  // 使用配置文件中的初始频率
     _pm_phase << 0, 0;
     target_command.setZero();
     _is_first_run = true;
@@ -154,7 +154,32 @@ void RLController::rl_control() {
 void RLController::joint_increment_control(Matrix<float, Dynamic, 1> increment) {
     pm_f = increment.segment(0, NUM_LEGS);
     compute_pm_phase(pm_f);
+    
+    // 应用模型输出的增量（相对于当前joint_act）
     joint_act.segment(0, NUM_ACTUAT_JOINTS) += increment.segment(NUM_LEGS, NUM_ACTUAT_JOINTS) * _rl_time_step;
+    
+    // ========== 基于ref_joint_act的微调回归 ==========
+    // 如果启用了偏差控制，添加一个向ref_joint_act回归的项
+    // 这确保模型输出会基于ref_joint_act进行微调，而不是完全自由累积
+    if (configParams.enable_ref_bias_control && configParams.ref_bias_weight > 0.0f) {
+        // 计算当前joint_act相对于ref_joint_act的偏差
+        Vec10<float> bias_from_ref = joint_act.segment(0, NUM_ACTUAT_JOINTS) - _ref_joint_act;
+        
+        // 添加回归项：向ref_joint_act方向回归，权重为ref_bias_weight
+        // 如果ref_bias_weight=0.1，表示每步回归10%的偏差
+        // 这样joint_act会保持在ref_joint_act附近，模型输出是对ref_joint_act的微调
+        joint_act.segment(0, NUM_ACTUAT_JOINTS) -= bias_from_ref * configParams.ref_bias_weight;
+    }
+    
+    // ========== 关节位置偏移量 ==========
+    // 应用配置的关节位置偏移量（用于微调特定关节）
+    if (configParams.joint_offset.size() >= NUM_ACTUAT_JOINTS) {
+        for (int i = 0; i < NUM_ACTUAT_JOINTS; ++i) {
+            joint_act[i] += configParams.joint_offset[i];
+        }
+    }
+    
+    // 限制关节位置在允许范围内
     joint_act = joint_act.cwiseMax(act_pos_low).cwiseMin(act_pos_high);
     // cout << "joint_act: " << joint_act.transpose() << endl;
     // exit(1);

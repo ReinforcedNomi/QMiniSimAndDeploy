@@ -78,9 +78,11 @@ void G1::Control() {
     }
     rlController->set_rl_joint_act2dds_motor_command(current_mode);
     control_count++;
-    // 控制周期为control_dt秒，每秒1次 = 1.0 / control_dt 次
-    // 例如：control_dt=0.015秒，则每秒约67次，即每67次打印一次
-    int print_interval = static_cast<int>(1.0 / control_dt_);  // 每秒1次
+    // 根据配置的日志打印频率计算打印间隔
+    // 打印间隔 = 控制频率 / 日志打印频率
+    // 例如：控制频率=67Hz，日志频率=5Hz，则每13.4次打印一次，取整为13次
+    int print_interval = static_cast<int>(1.0 / control_dt_ / rlController->configParams.log_print_frequency);
+    if (print_interval < 1) print_interval = 1;  // 至少每次打印一次
     if (control_count % print_interval == 0) {
         control_count = 0;
         // 格式化输出当前关节位置，保留两位小数

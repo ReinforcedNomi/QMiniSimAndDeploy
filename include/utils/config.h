@@ -68,6 +68,81 @@ public:
         } else {
             torque_protection_duration = 0.5f;  // 默认0.5秒
         }
+        
+        // 日志打印频率（Hz）
+        if (params["log_print_frequency"]) {
+            log_print_frequency = params["log_print_frequency"].as<float>();
+        } else {
+            log_print_frequency = 5.0f;  // 默认5Hz
+        }
+        
+        // 步态频率参数
+        if (params["initial_gait_frequency"]) {
+            initial_gait_frequency = params["initial_gait_frequency"].as<float>();
+        } else {
+            initial_gait_frequency = 0.3f;  // 默认0.3Hz
+        }
+        
+        if (params["gait_frequency_max"]) {
+            gait_frequency_max = params["gait_frequency_max"].as<float>();
+        } else {
+            gait_frequency_max = 2.0f;  // 默认2.0Hz
+        }
+        
+        if (params["gait_frequency_min"]) {
+            gait_frequency_min = params["gait_frequency_min"].as<float>();
+        } else {
+            gait_frequency_min = 0.2f;  // 默认0.2Hz
+        }
+        
+        // 步态幅度参数（关节增量范围）
+        if (params["joint_increment_max"]) {
+            joint_increment_max = params["joint_increment_max"].as<float>();
+        } else {
+            joint_increment_max = 10.0f;  // 默认10.0 rad/s
+        }
+        
+        if (params["joint_increment_min"]) {
+            joint_increment_min = params["joint_increment_min"].as<float>();
+        } else {
+            joint_increment_min = -10.0f;  // 默认-10.0 rad/s
+        }
+        
+        // 基于ref_joint_act的偏差控制参数
+        if (params["enable_ref_bias_control"]) {
+            enable_ref_bias_control = params["enable_ref_bias_control"].as<bool>();
+        } else {
+            enable_ref_bias_control = true;  // 默认启用
+        }
+        
+        if (params["ref_bias_weight"]) {
+            ref_bias_weight = params["ref_bias_weight"].as<float>();
+        } else {
+            ref_bias_weight = 0.1f;  // 默认0.1（轻微回归）
+        }
+        
+        // 关节位置偏移量
+        if (params["joint_offset"]) {
+            joint_offset = params["joint_offset"].as < std::vector < float > > ();
+        } else {
+            joint_offset = std::vector<float>(10, 0.0f);  // 默认全为0
+        }
+        // 确保有10个关节的偏移量
+        if (joint_offset.size() < 10) {
+            joint_offset.resize(10, 0.0f);
+        }
+        
+        // 用新的步态参数覆盖act_inc_high和act_inc_low
+        // act_inc_high[0] = 频率上限, act_inc_high[1] = 关节增量上限
+        // act_inc_low[0] = 频率下限, act_inc_low[1] = 关节增量下限
+        if (act_inc_high.size() >= 2) {
+            act_inc_high[0] = gait_frequency_max;
+            act_inc_high[1] = joint_increment_max;
+        }
+        if (act_inc_low.size() >= 2) {
+            act_inc_low[0] = gait_frequency_min;
+            act_inc_low[1] = joint_increment_min;
+        }
     }
 
 public:
@@ -104,6 +179,25 @@ public:
     bool enable_torque_protection = false;  // 是否启用力矩保护
     std::vector<float> torque_limit = {12.0f};  // 力矩上限 (N·m)
     float torque_protection_duration = 0.5f;  // 力矩超过阈值后持续多长时间才触发保护 (秒)
+    
+    // 日志打印频率（Hz）
+    float log_print_frequency = 5.0f;  // 日志输出频率，默认5Hz
+    
+    // 步态频率参数
+    float initial_gait_frequency = 0.3f;  // 初始步态频率，默认0.3Hz
+    float gait_frequency_max = 2.0f;      // 最大步态频率上限，默认2.0Hz
+    float gait_frequency_min = 0.2f;      // 最小步态频率下限，默认0.2Hz
+    
+    // 步态幅度参数（关节增量范围）
+    float joint_increment_max = 10.0f;    // 关节增量最大值，默认10.0 rad/s
+    float joint_increment_min = -10.0f;   // 关节增量最小值，默认-10.0 rad/s
+    
+    // 基于ref_joint_act的偏差控制参数
+    bool enable_ref_bias_control = true;  // 是否启用基于ref_joint_act的偏差控制
+    float ref_bias_weight = 0.1f;         // 回归权重，范围[0,1]，默认0.1（轻微回归到ref_joint_act）
+    
+    // 关节位置偏移量
+    std::vector<float> joint_offset = {0.0f};  // 各关节的位置偏移量（rad）
 
 };
 

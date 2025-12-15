@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-实时读取 qmini_log.log 文件，提取 Q、N、F、E 数据，绘制实时波形图
+实时读取 qmini_log.log 文件，提取 Q、N、F 数据，绘制实时波形图
 Q: 当前关节位置（蓝色）
 N: 目标关节位置（红色）
 F: 实时输出扭矩（绿色）
-E: 错误码（仅在有关节报错时输出，用红色点标记）
 
 实时显示最近30秒的数据，自动更新
 """
@@ -19,6 +18,7 @@ import sys
 import os
 from datetime import datetime
 import time
+import yaml
 
 # 设置中文字体支持
 rcParams['font.sans-serif'] = ['DejaVu Sans', 'SimHei', 'Arial Unicode MS']
@@ -31,12 +31,37 @@ _data_cache = {
     'q_data': [],
     'n_data': [],
     'f_data': [],
-    'e_data': [],
     'timestamps': []  # 记录每条数据的时间戳
 }
 # 数据更新频率：每秒1次（与日志输出频率一致）
 DATA_UPDATE_RATE = 1.0  # Hz
 WINDOW_DURATION = 30.0  # 秒，显示窗口时长
+
+def load_joint_limits(config_path='config.yaml'):
+    """
+    从config.yaml加载关节限位信息
+    
+    Args:
+        config_path: config.yaml文件路径
+    
+    Returns:
+        act_pos_low: 关节位置下限列表（10个关节）
+        act_pos_high: 关节位置上限列表（10个关节）
+    """
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+            act_pos_low = config.get('act_pos_low', [0.0] * 10)
+            act_pos_high = config.get('act_pos_high', [0.0] * 10)
+            # 确保返回10个关节的限位
+            if len(act_pos_low) < 10:
+                act_pos_low = act_pos_low + [0.0] * (10 - len(act_pos_low))
+            if len(act_pos_high) < 10:
+                act_pos_high = act_pos_high + [0.0] * (10 - len(act_pos_high))
+            return act_pos_low[:10], act_pos_high[:10]
+    except Exception as e:
+        print(f"警告: 无法加载限位信息 ({e})，使用默认值")
+        return [0.0] * 10, [0.0] * 10
 
 def parse_log_file_incremental(log_file_path):
     """
@@ -53,15 +78,13 @@ def parse_log_file_incremental(log_file_path):
     new_data = {
         'q_data': [],
         'n_data': [],
-        'f_data': [],
-        'e_data': []
+        'f_data': []
     }
     
-    # Q、N、F、E 的正则表达式
+    # Q、N、F 的正则表达式
     q_pattern = re.compile(r'Q:\s*\[\s*([-\d\.\s,]+)\s*\]')
     n_pattern = re.compile(r'N:\s*\[\s*([-\d\.\s,]+)\s*\]')
     f_pattern = re.compile(r'F:\s*\[\s*([-\d\.\s,]+)\s*\]')
-    e_pattern = re.compile(r'E:\s*\[\s*([-\d\.\s,]+)\s*\]')
     
     try:
         with open(log_file_path, 'r', encoding='utf-8') as f:
@@ -94,14 +117,6 @@ def parse_log_file_incremental(log_file_path):
                     f_values = [float(x.strip()) for x in f_str.split(',') if x.strip()]
                     if len(f_values) == 10:
                         new_data['f_data'].append(f_values)
-                
-                # 匹配 E 数据（错误码）
-                e_match = e_pattern.search(line)
-                if e_match:
-                    e_str = e_match.group(1)
-                    e_values = [int(x.strip()) for x in e_str.split(',') if x.strip()]
-                    if len(e_values) == 10:
-                        new_data['e_data'].append(e_values)
             
             # 更新文件位置
             _last_file_position = f.tell()
@@ -126,18 +141,15 @@ def parse_log_file(log_file_path):
         q_data: Q数据列表，每个元素是一个包含10个关节位置的列表
         n_data: N数据列表，每个元素是一个包含10个关节位置的列表
         f_data: F数据列表，每个元素是一个包含10个关节扭矩的列表
-        e_data: E数据列表，每个元素是一个包含10个关节错误码的列表（可能为空）
     """
     q_data = []
     n_data = []
     f_data = []
-    e_data = []
     
-    # Q、N、F、E 的正则表达式
+    # Q、N、F 的正则表达式
     q_pattern = re.compile(r'Q:\s*\[\s*([-\d\.\s,]+)\s*\]')
     n_pattern = re.compile(r'N:\s*\[\s*([-\d\.\s,]+)\s*\]')
     f_pattern = re.compile(r'F:\s*\[\s*([-\d\.\s,]+)\s*\]')
-    e_pattern = re.compile(r'E:\s*\[\s*([-\d\.\s,]+)\s*\]')
     
     try:
         with open(log_file_path, 'r', encoding='utf-8') as f:
@@ -167,23 +179,15 @@ def parse_log_file(log_file_path):
                     f_values = [float(x.strip()) for x in f_str.split(',') if x.strip()]
                     if len(f_values) == 10:
                         f_data.append(f_values)
-                
-                # 匹配 E 数据（错误码）
-                e_match = e_pattern.search(line)
-                if e_match:
-                    e_str = e_match.group(1)
-                    e_values = [int(x.strip()) for x in e_str.split(',') if x.strip()]
-                    if len(e_values) == 10:
-                        e_data.append(e_values)
     
     except FileNotFoundError:
         print(f"错误: 找不到文件 {log_file_path}")
-        return None, None, None, None
+        return None, None, None
     except Exception as e:
         print(f"错误: 读取文件时出错: {e}")
-        return None, None, None, None
+        return None, None, None
     
-    return q_data, n_data, f_data, e_data
+    return q_data, n_data, f_data
 
 def update_data_cache(new_data, current_time):
     """
@@ -215,11 +219,6 @@ def update_data_cache(new_data, current_time):
         for f_val in new_data['f_data']:
             _data_cache['f_data'].append(f_val)
     
-    # E数据（错误码）
-    if new_data and new_data.get('e_data'):
-        for e_val in new_data['e_data']:
-            _data_cache['e_data'].append(e_val)
-    
     # 移除超过30秒的旧数据
     if len(_data_cache['timestamps']) > 0:
         cutoff_time = current_time - WINDOW_DURATION
@@ -239,11 +238,9 @@ def update_data_cache(new_data, current_time):
             _data_cache['q_data'] = _data_cache['q_data'][keep_start_idx:]
             _data_cache['n_data'] = _data_cache['n_data'][keep_start_idx:]
             _data_cache['timestamps'] = _data_cache['timestamps'][keep_start_idx:]
-            # F和E数据可能长度不同，需要分别处理
+            # F数据可能长度不同，需要分别处理
             if len(_data_cache['f_data']) > keep_start_idx:
                 _data_cache['f_data'] = _data_cache['f_data'][keep_start_idx:]
-            if len(_data_cache['e_data']) > keep_start_idx:
-                _data_cache['e_data'] = _data_cache['e_data'][keep_start_idx:]
     
     # 确保Q、N和timestamps长度一致
     min_len = min(len(_data_cache['q_data']), len(_data_cache['n_data']), len(_data_cache['timestamps']))
@@ -254,7 +251,7 @@ def update_data_cache(new_data, current_time):
     if min_len < len(_data_cache['timestamps']):
         _data_cache['timestamps'] = _data_cache['timestamps'][:min_len]
 
-def plot_joint_data(q_data, n_data, f_data=None, e_data=None, save_path=None):
+def plot_joint_data(q_data, n_data, f_data=None, save_path=None, config_path='config.yaml'):
     """
     绘制关节位置波形图
     
@@ -262,8 +259,8 @@ def plot_joint_data(q_data, n_data, f_data=None, e_data=None, save_path=None):
         q_data: Q数据列表（当前位置）
         n_data: N数据列表（目标位置）
         f_data: F数据列表（实时扭矩，可选）
-        e_data: E数据列表（错误码，可选）
         save_path: 保存图片的路径（可选）
+        config_path: config.yaml文件路径，用于加载限位信息
     """
     if not q_data or not n_data:
         print("错误: 没有数据可绘制")
@@ -290,33 +287,30 @@ def plot_joint_data(q_data, n_data, f_data=None, e_data=None, save_path=None):
             f_padded[:len(f_array)] = f_array
             f_array = f_padded
     
-    # 处理 E 数据（错误码）
-    e_array = None
-    if e_data and len(e_data) > 0:
-        e_array = np.array(e_data)
-        if len(e_array) > min_len:
-            e_array = e_array[:min_len]
-        elif len(e_array) < min_len:
-            # 如果E数据不足，用0填充（表示无错误）
-            e_padded = np.zeros((min_len, 10), dtype=int)
-            e_padded[:len(e_array)] = e_array
-            e_array = e_padded
-    
     # 时间轴（每秒1次，所以间隔1秒）
     time_axis = np.arange(min_len)
+    
+    # 加载关节限位信息
+    act_pos_low, act_pos_high = load_joint_limits(config_path)
     
     # 关节名称
     joint_names = [f'Joint {i}' for i in range(10)]
     
-    # 创建子图：10行3列，每行显示一个关节的位置、扭矩、错误码
-    fig = plt.figure(figsize=(18, 24))
+    # 创建子图：10行2列，每行显示一个关节的位置、扭矩
+    fig = plt.figure(figsize=(12, 24))
     
-    # 为每个关节创建一行，包含3个子图（位置、扭矩、错误码）
+    # 为每个关节创建一行，包含2个子图（位置、扭矩）
     for i in range(10):
         # 第一列：位置（Q 和 N）
-        ax1 = plt.subplot(10, 3, i * 3 + 1)
+        ax1 = plt.subplot(10, 2, i * 2 + 1)
         ax1.plot(time_axis, q_array[:, i], 'b-', label='Q (Current)', linewidth=1.5, alpha=0.8)
         ax1.plot(time_axis, n_array[:, i], 'r--', label='N (Target)', linewidth=1.5, alpha=0.8)
+        
+        # 添加限位红线
+        if i < len(act_pos_low) and i < len(act_pos_high):
+            ax1.axhline(y=act_pos_low[i], color='r', linestyle='-', linewidth=1.0, alpha=0.6, label='Limit Low' if i == 0 else '')
+            ax1.axhline(y=act_pos_high[i], color='r', linestyle='-', linewidth=1.0, alpha=0.6, label='Limit High' if i == 0 else '')
+        
         ax1.set_title(f'{joint_names[i]} - Position', fontsize=11, fontweight='bold')
         ax1.set_xlabel('Time (s)', fontsize=9)
         ax1.set_ylabel('Position (rad)', fontsize=9)
@@ -324,7 +318,7 @@ def plot_joint_data(q_data, n_data, f_data=None, e_data=None, save_path=None):
         ax1.legend(loc='best', fontsize=8)
         
         # 第二列：扭矩（F）
-        ax2 = plt.subplot(10, 3, i * 3 + 2)
+        ax2 = plt.subplot(10, 2, i * 2 + 2)
         if f_array is not None:
             ax2.plot(time_axis, f_array[:, i], 'g-', label='F (Torque)', linewidth=1.5, alpha=0.8)
             ax2.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
@@ -335,40 +329,9 @@ def plot_joint_data(q_data, n_data, f_data=None, e_data=None, save_path=None):
         ax2.set_xlabel('Time (s)', fontsize=9)
         ax2.set_ylabel('Torque (N·m)', fontsize=9)
         ax2.grid(True, alpha=0.3)
-        
-        # 第三列：错误码（E）
-        ax3 = plt.subplot(10, 3, i * 3 + 3)
-        if e_array is not None:
-            error_mask = e_array[:, i] != 0
-            if np.any(error_mask):
-                error_times = time_axis[error_mask]
-                error_codes = e_array[error_mask, i]
-                # 用不同颜色标记不同错误码
-                colors = ['red', 'orange', 'purple', 'brown', 'pink']
-                for t, code in zip(error_times, error_codes):
-                    color = colors[code % len(colors)] if code < len(colors) else 'red'
-                    ax3.scatter(t, code, c=color, s=50, alpha=0.8, zorder=5)
-                ax3.set_ylim(-0.5, 5.5)
-                ax3.set_yticks([0, 1, 2, 3, 4, 5])
-                ax3.set_yticklabels(['0:Normal', '1:Overheat', '2:Overcurrent', '3:Overvoltage', '4:Encoder', '5:Protect'])
-            else:
-                ax3.text(0.5, 0.5, 'No errors', ha='center', va='center', transform=ax3.transAxes, 
-                       color='green', fontweight='bold')
-                ax3.set_ylim(-0.5, 5.5)
-                ax3.set_yticks([0])
-                ax3.set_yticklabels(['0:Normal'])
-        else:
-            ax3.text(0.5, 0.5, 'No E data', ha='center', va='center', transform=ax3.transAxes)
-            ax3.set_ylim(-0.5, 5.5)
-            ax3.set_yticks([0])
-            ax3.set_yticklabels(['0:Normal'])
-        ax3.set_title(f'{joint_names[i]} - Error Code', fontsize=11, fontweight='bold')
-        ax3.set_xlabel('Time (s)', fontsize=9)
-        ax3.set_ylabel('Error Code', fontsize=9)
-        ax3.grid(True, alpha=0.3)
     
     # 添加总标题
-    fig.suptitle('QMini Joint Data: Position (Q/N) | Torque (F) | Error Code (E)', 
+    fig.suptitle('QMini Joint Data: Position (Q/N) | Torque (F)', 
                  fontsize=16, fontweight='bold', y=0.995)
     
     # 调整布局
@@ -407,7 +370,6 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
     q_data = _data_cache['q_data']
     n_data = _data_cache['n_data']
     f_data = _data_cache['f_data'] if _data_cache['f_data'] else None
-    e_data = _data_cache['e_data'] if _data_cache['e_data'] else None
     timestamps = _data_cache['timestamps']
     
     if len(q_data) == 0 or len(n_data) == 0:
@@ -439,88 +401,62 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
     if f_data and len(f_data) >= min_len:
         f_array = np.array(f_data[-min_len:])
     
-    # 处理E数据
-    e_array = None
-    if e_data and len(e_data) >= min_len:
-        e_array = np.array(e_data[-min_len:])
-    
     # 更新每个关节的图表
     for i in range(10):
         # 更新位置图（第一列）
-        if i * 3 + 1 in lines_dict:
-            lines_dict[i * 3 + 1]['q'].set_data(time_axis, q_array[:, i])
-            lines_dict[i * 3 + 1]['n'].set_data(time_axis, n_array[:, i])
+        if i * 2 + 1 in lines_dict:
+            lines_dict[i * 2 + 1]['q'].set_data(time_axis, q_array[:, i])
+            lines_dict[i * 2 + 1]['n'].set_data(time_axis, n_array[:, i])
             # 更新x轴范围（滑动窗口：0 到 WINDOW_DURATION）
             if len(time_axis) > 0:
-                axes_list[i * 3].set_xlim(0, WINDOW_DURATION)
+                axes_list[i * 2].set_xlim(0, WINDOW_DURATION)
             # 更新y轴范围
             if len(q_array) > 0 and len(n_array) > 0:
                 y_min = min(np.min(q_array[:, i]), np.min(n_array[:, i]))
                 y_max = max(np.max(q_array[:, i]), np.max(n_array[:, i]))
                 y_range = y_max - y_min
                 if y_range > 0:
-                    axes_list[i * 3].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
+                    axes_list[i * 2].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
         
         # 更新扭矩图（第二列）
-        if i * 3 + 2 in lines_dict and f_array is not None:
-            lines_dict[i * 3 + 2]['f'].set_data(time_axis, f_array[:, i])
+        if i * 2 + 2 in lines_dict and f_array is not None:
+            lines_dict[i * 2 + 2]['f'].set_data(time_axis, f_array[:, i])
             # 更新x轴范围（滑动窗口：0 到 WINDOW_DURATION）
             if len(time_axis) > 0:
-                axes_list[i * 3 + 1].set_xlim(0, WINDOW_DURATION)
+                axes_list[i * 2 + 1].set_xlim(0, WINDOW_DURATION)
             if len(f_array) > 0:
                 y_min = np.min(f_array[:, i])
                 y_max = np.max(f_array[:, i])
                 y_range = y_max - y_min
                 if y_range > 0:
-                    axes_list[i * 3 + 1].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
-        
-        # 更新错误码图（第三列）
-        if i * 3 + 3 in lines_dict and e_array is not None:
-            # 清除旧的散点
-            if 'scatter' in lines_dict[i * 3 + 3]:
-                for sc in lines_dict[i * 3 + 3]['scatter']:
-                    sc.remove()
-                lines_dict[i * 3 + 3]['scatter'] = []
-            
-            # 绘制新的错误码点
-            error_mask = e_array[:, i] != 0
-            if np.any(error_mask):
-                error_times = time_axis[error_mask]
-                error_codes = e_array[error_mask, i]
-                colors = ['red', 'orange', 'purple', 'brown', 'pink']
-                scatter_list = []
-                for t, code in zip(error_times, error_codes):
-                    color = colors[code % len(colors)] if code < len(colors) else 'red'
-                    sc = axes_list[i * 3 + 2].scatter(t, code, c=color, s=50, alpha=0.8, zorder=5)
-                    scatter_list.append(sc)
-                lines_dict[i * 3 + 3]['scatter'] = scatter_list
-                # 更新x轴范围（滑动窗口：0 到 WINDOW_DURATION）
-                if len(time_axis) > 0:
-                    axes_list[i * 3 + 2].set_xlim(0, WINDOW_DURATION)
+                    axes_list[i * 2 + 1].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
     
     return lines_dict
 
-def plot_real_time(log_file_path):
+def plot_real_time(log_file_path, config_path='config.yaml'):
     """
     实时绘制关节数据波形图（滑动窗口30秒）
     
     Args:
         log_file_path: 日志文件路径
+        config_path: config.yaml文件路径，用于加载限位信息
     """
     global _data_cache, _last_file_position
+    
+    # 加载关节限位信息
+    act_pos_low, act_pos_high = load_joint_limits(config_path)
     
     # 初始化数据缓存
     _data_cache = {
         'q_data': [],
         'n_data': [],
         'f_data': [],
-        'e_data': [],
         'timestamps': []
     }
     _last_file_position = 0
     
-    # 创建图形和子图：10行3列
-    fig = plt.figure(figsize=(18, 24))
+    # 创建图形和子图：10行2列
+    fig = plt.figure(figsize=(12, 24))
     axes_list = []
     lines_dict = {}
     
@@ -529,9 +465,19 @@ def plot_real_time(log_file_path):
     # 初始化所有子图和线条
     for i in range(10):
         # 第一列：位置（Q 和 N）
-        ax1 = plt.subplot(10, 3, i * 3 + 1)
+        ax1 = plt.subplot(10, 2, i * 2 + 1)
         line_q, = ax1.plot([], [], 'b-', label='Q (Current)', linewidth=1.5, alpha=0.8)
         line_n, = ax1.plot([], [], 'r--', label='N (Target)', linewidth=1.5, alpha=0.8)
+        
+        # 添加限位红线（静态，在初始化时绘制）
+        if i < len(act_pos_low) and i < len(act_pos_high):
+            line_low = ax1.axhline(y=act_pos_low[i], color='r', linestyle='-', linewidth=1.0, alpha=0.6, label='Limit Low' if i == 0 else '')
+            line_high = ax1.axhline(y=act_pos_high[i], color='r', linestyle='-', linewidth=1.0, alpha=0.6, label='Limit High' if i == 0 else '')
+            # 保存限位线引用（如果需要后续更新）
+            lines_dict[i * 2 + 1] = {'q': line_q, 'n': line_n, 'limit_low': line_low, 'limit_high': line_high}
+        else:
+            lines_dict[i * 2 + 1] = {'q': line_q, 'n': line_n}
+        
         ax1.set_title(f'{joint_names[i]} - Position', fontsize=11, fontweight='bold')
         ax1.set_xlabel('Time (s)', fontsize=9)
         ax1.set_ylabel('Position (rad)', fontsize=9)
@@ -539,10 +485,9 @@ def plot_real_time(log_file_path):
         ax1.grid(True, alpha=0.3)
         ax1.legend(loc='best', fontsize=8)
         axes_list.append(ax1)
-        lines_dict[i * 3 + 1] = {'q': line_q, 'n': line_n}
         
         # 第二列：扭矩（F）
-        ax2 = plt.subplot(10, 3, i * 3 + 2)
+        ax2 = plt.subplot(10, 2, i * 2 + 2)
         line_f, = ax2.plot([], [], 'g-', label='F (Torque)', linewidth=1.5, alpha=0.8)
         ax2.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
         ax2.set_title(f'{joint_names[i]} - Torque', fontsize=11, fontweight='bold')
@@ -552,23 +497,10 @@ def plot_real_time(log_file_path):
         ax2.grid(True, alpha=0.3)
         ax2.legend(loc='best', fontsize=8)
         axes_list.append(ax2)
-        lines_dict[i * 3 + 2] = {'f': line_f}
-        
-        # 第三列：错误码（E）
-        ax3 = plt.subplot(10, 3, i * 3 + 3)
-        ax3.set_title(f'{joint_names[i]} - Error Code', fontsize=11, fontweight='bold')
-        ax3.set_xlabel('Time (s)', fontsize=9)
-        ax3.set_ylabel('Error Code', fontsize=9)
-        ax3.set_xlim(0, WINDOW_DURATION)
-        ax3.set_ylim(-0.5, 5.5)
-        ax3.set_yticks([0, 1, 2, 3, 4, 5])
-        ax3.set_yticklabels(['0:Normal', '1:Overheat', '2:Overcurrent', '3:Overvoltage', '4:Encoder', '5:Protect'])
-        ax3.grid(True, alpha=0.3)
-        axes_list.append(ax3)
-        lines_dict[i * 3 + 3] = {'scatter': []}
+        lines_dict[i * 2 + 2] = {'f': line_f}
     
     # 添加总标题
-    fig.suptitle(f'QMini Real-time Joint Data (Last {WINDOW_DURATION}s): Position | Torque | Error Code', 
+    fig.suptitle(f'QMini Real-time Joint Data (Last {WINDOW_DURATION}s): Position | Torque', 
                  fontsize=16, fontweight='bold', y=0.995)
     
     # 调整布局
@@ -695,7 +627,11 @@ def main():
         print(f"显示窗口: 最近 {WINDOW_DURATION} 秒的数据")
         print("按 Ctrl+C 退出实时显示")
         try:
-            plot_real_time(log_file_path)
+            # 获取config.yaml路径（假设与日志文件在同一目录）
+            config_path = os.path.join(os.path.dirname(log_file_path), 'config.yaml')
+            if not os.path.exists(config_path):
+                config_path = 'config.yaml'  # 使用默认路径
+            plot_real_time(log_file_path, config_path)
         except KeyboardInterrupt:
             print("\n实时显示已停止")
     else:
@@ -703,7 +639,7 @@ def main():
         print(f"静态模式，读取日志文件: {log_file_path}")
         
         # 解析日志文件
-        q_data, n_data, f_data, e_data = parse_log_file(log_file_path)
+        q_data, n_data, f_data = parse_log_file(log_file_path)
         
         if q_data is None or n_data is None:
             return
@@ -714,10 +650,6 @@ def main():
             print(f"成功读取 {len(f_data)} 条 F 数据（扭矩）")
         else:
             print("未找到 F 数据（扭矩）")
-        if e_data:
-            print(f"成功读取 {len(e_data)} 条 E 数据（错误码）")
-        else:
-            print("未找到 E 数据（错误码）")
         
         if len(q_data) == 0 or len(n_data) == 0:
             print("警告: 没有找到有效数据")
@@ -733,9 +665,13 @@ def main():
         filename = f'Joint_log_{timestamp}.png'
         save_path = os.path.join(log_dir, filename)
         
-        # 绘制分关节图（包含位置、扭矩、错误码）
+        # 绘制分关节图（包含位置、扭矩）
         print("正在绘制分关节波形图...")
-        plot_joint_data(q_data, n_data, f_data, e_data, save_path)
+        # 获取config.yaml路径（假设与日志文件在同一目录）
+        config_path = os.path.join(os.path.dirname(log_file_path), 'config.yaml')
+        if not os.path.exists(config_path):
+            config_path = 'config.yaml'  # 使用默认路径
+        plot_joint_data(q_data, n_data, f_data, save_path, config_path)
         
         # 绘制所有关节在一张图上（可选，注释掉以禁用）
         # print("正在绘制所有关节波形图...")
