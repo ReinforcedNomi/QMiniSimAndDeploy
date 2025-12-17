@@ -310,6 +310,7 @@ void RLController::joystick_command_process() {
         yr_cmd = std::clamp(yr_cmd, -yr_max, yr_max);
         vx_cmd = std::clamp(vx_cmd, vx_min, vx_max);
     }
+    yr_cmd = 0;  // 强制将旋转指令设置为0
     target_command << vx_cmd, yr_cmd;
 }
 

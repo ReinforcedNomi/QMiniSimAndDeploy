@@ -10,24 +10,24 @@ onnx_model_path: "policy.onnx"  # 模型文件路径（相对于可执行文件�
 control_dt: 0.015
 
 #log print frequency (日志打印频率)
-log_print_frequency: 5.0  # Hz，日志输出频率，默认5Hz（每秒5次）
+log_print_frequency: 2.0  # Hz，日志输出频率，默认5Hz（每秒5次）
 
 #gait frequency parameters (步态频率参数)
-initial_gait_frequency:  1.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
+initial_gait_frequency:  2.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
 gait_frequency_max: 3.0      # Hz，最大步态频率上限，默认2.0Hz（原3.5Hz，降低步频）
 gait_frequency_min: 0.2      # Hz，最小步态频率下限，默认0.2Hz（原0.5Hz，降低步频）
 
 #gait amplitude parameters (步态幅度参数，控制步幅大小)
-joint_increment_max: 10.0    # rad/s，关节增量最大值，默认10.0（原15.0，降低步幅）
-joint_increment_min: -10.0   # rad/s，关节增量最小值，默认-10.0（原-15.0，降低步幅）
+joint_increment_max: 15.0    # rad/s，关节增量最大值，默认10.0（原15.0，降低步幅）
+joint_increment_min: -15.0   # rad/s，关节增量最小值，默认-10.0（原-15.0，降低步幅）
 
 #joint position increments limits
 act_inc_high: [ 3.5,  15. ] # f*2+(leg*5)*2+torso*1+(arm*4)*2 (将被上面的参数覆盖)
 act_inc_low: [ 0.5, -15. ]
 
 #target command ranges
-vx_cmd_range: [ -0.3, 0.5 ] #m/s
-yr_cmd_range: [ -1., 1. ]  #rad/s
+vx_cmd_range: [ -0.2, 0.3 ] #m/s
+yr_cmd_range: [ -0.5, 0.5 ]  #rad/s
 kp_yaw_ctrl: 2.
 
 #ref joint act bias control (基于ref_joint_act的微调控制)
@@ -42,8 +42,12 @@ sin_joint_idx: 1
 use_sim_gait: false  #改 true 会报错
 #台架站立位置：
 
-ref_joint_act: [ 0.50, 0.14, -1.69, 1.50, -0.60, -0.53, -0.17, 1.74, -1.47, 0.64 ]
+# ref_joint_act: [ 0.54, 0.24, -1.68, 0.84, -1.09, -0.52, -0.21, 1.72, -0.83, 1.13]  #支架姿态
+# ref_joint_act:0.50, 0.24, -1.63, 0.92, -1.22, -0.57, -0.18, 1.71, -0.83, 1.24  feet forward
+ref_joint_act: [0.48, 0.23, -1.70, 0.90, -1.2, -0.52, -0.19, 1.69, -0.89, 1.2]  #重心微调
 # 期望：         0.4, -0.1, -1.5, 1., -1.3,          -0.4, 0.1, 1.5, -1., 1.3
+
+
 #joint position limits
 
 act_pos_low: [ -0.1, -0.3, -2.1, 0.0, -2.5, -0.7, -0.6, 0.0, -2.1, 0.0 ]
@@ -53,17 +57,12 @@ act_pos_high: [ 0.7, 0.6, 0.0, 2.1, 0.0, 0.1, 0.3, 2.1, 0.0, 2.5 ]
 kp_soft: [ 0.,0.,0.,0.,0. , 0.,0.,0.,0.,0. ] #(hip*3+knee*1+ankle*1)*2
 kd_soft: [ 0.,0.,0.,0.,0., 0.,0.,0.,0.,0. ] #(hip*3+knee*1+ankle*1)*2
 
-
-#Q实时位置相应不足，增加KP和KD
-# for position stand and rl control
-# Joint3和Joint8无法到达目标位置，提高这两个关节的kp/kd以提高响应速度
-# Joint4（索引3）出现错误码6且扭矩为0，提高KP以增强驱动力
-kp: [ 0.7, 0.6, 1.5, 2.0, 1.5, 0.7, 0.35, 1.0, 2, 0.7 ] #(hip*3+knee*1+ankle*1)*2, Joint4提高到2.5以增强驱动力
-kd: [ 0.035, 0.035, 0.035, 0.10, 0.035, 0.035, 0.035, 0.035, 0.07, 0.035 ] #(hip*3+knee*1+ankle*1)*2, Joint4提高到0.10以增强阻尼
+kp: [ 1,0.5, 1.5, 1,1.5 , 1,0.5,1.5,1,1.5 ] #(hip*3+knee*1+ankle*1)*2
+kd: [ 0.05,0.05,0.05,0.05,0.05, 0.05,0.05,0.05,0.05,0.05 ] #(hip*3+knee*1+ankle*1)*2
 
 #torque protection (力矩保护)
 enable_torque_protection: true  # 是否启用力矩保护
-torque_limit: [ 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0 ]  # 每个关节的力矩上限 (N·m)，超过此值自动泄力
+torque_limit: [ 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 ]  # 每个关节的力矩上限 (N·m)，超过此值自动泄力
 torque_protection_duration: 0.5  # 力矩超过阈值后持续多长时间才触发保护 (秒)
 #LB 按键启动步态
 #A站立

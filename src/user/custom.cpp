@@ -115,6 +115,12 @@ void G1::Control() {
         }
         cout << " ]" << endl;
         
+        // 格式化输出前进指令和旋转指令，保留两位小数
+        cout << "C: [ ";
+        cout << std::fixed << std::setprecision(2) << rlController->target_command(0) << ", ";
+        cout << std::fixed << std::setprecision(2) << rlController->target_command(1);
+        cout << " ]" << endl;
+        
         // 检查并输出错误码（仅在有关节报错时输出）
         const std::array<MotorData, 10> &motor_data = Motor_control.GetData();
         bool has_error = false;
