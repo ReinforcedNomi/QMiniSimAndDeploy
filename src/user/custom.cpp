@@ -121,6 +121,38 @@ void G1::Control() {
         cout << std::fixed << std::setprecision(2) << rlController->target_command(1);
         cout << " ]" << endl;
         
+        // 格式化输出IMU观测量，保留两位小数
+        // I: [ roll, pitch, yaw, roll_rate, pitch_rate, yaw_rate, acc_x, acc_y, acc_z ]
+        // 直接从base_state_buffer_读取最新数据，而不是依赖可能未更新的rlController变量
+        const std::shared_ptr<const BaseState> base_state = base_state_buffer_.GetData();
+        cout << "I: [ ";
+        if (base_state) {
+            // 姿态角 (roll, pitch, yaw)
+            cout << std::fixed << std::setprecision(2) << base_state->rpy.at(0) << ", ";
+            cout << std::fixed << std::setprecision(2) << base_state->rpy.at(1) << ", ";
+            cout << std::fixed << std::setprecision(2) << base_state->rpy.at(2) << ", ";
+            // 角速度 (roll_rate, pitch_rate, yaw_rate)
+            cout << std::fixed << std::setprecision(2) << base_state->omega.at(0) << ", ";
+            cout << std::fixed << std::setprecision(2) << base_state->omega.at(1) << ", ";
+            cout << std::fixed << std::setprecision(2) << base_state->omega.at(2) << ", ";
+            // 加速度 (acc_x, acc_y, acc_z)
+            cout << std::fixed << std::setprecision(2) << base_state->acc.at(0) << ", ";
+            cout << std::fixed << std::setprecision(2) << base_state->acc.at(1) << ", ";
+            cout << std::fixed << std::setprecision(2) << base_state->acc.at(2);
+        } else {
+            // 如果base_state为空，使用rlController中的值（可能未更新）
+            cout << std::fixed << std::setprecision(2) << rlController->base_rpy(0) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_rpy(1) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_rpy(2) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_rpy_rate(0) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_rpy_rate(1) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_rpy_rate(2) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_acc(0) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_acc(1) << ", ";
+            cout << std::fixed << std::setprecision(2) << rlController->base_acc(2);
+        }
+        cout << " ]" << endl;
+        
         // 检查并输出错误码（仅在有关节报错时输出）
         const std::array<MotorData, 10> &motor_data = Motor_control.GetData();
         bool has_error = false;

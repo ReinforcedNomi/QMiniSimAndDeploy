@@ -26,13 +26,13 @@ act_inc_high: [ 3.5,  15. ] # f*2+(leg*5)*2+torso*1+(arm*4)*2 (将被上面的�
 act_inc_low: [ 0.5, -15. ]
 
 #target command ranges
-vx_cmd_range: [ -0.2, 0.3 ] #m/s
-yr_cmd_range: [ -0.5, 0.5 ]  #rad/s
+vx_cmd_range: [ -0.3, 0.5 ] #m/s
+yr_cmd_range: [ -0.3, 0.3 ]  #rad/s
 kp_yaw_ctrl: 2.
 
 #ref joint act bias control (基于ref_joint_act的微调控制)
 enable_ref_bias_control: true  # 是否启用基于ref_joint_act的偏差控制
-ref_bias_weight: 0.1  # 回归权重，范围[0,1]，0=不回归，1=完全回归到ref_joint_act，默认0.1（轻微回归）
+ref_bias_weight: 0.05  # 回归权重，范围[0,1]，0=不回归，1=完全回归到ref_joint_act，默认0.1（轻微回归）
 
 #joint position offset (关节位置偏移量)
 joint_offset: [ 0.0, 0, 0, 0, 0.0, 0, 0, 0, 0.0, 0.0 ]  # 各关节的位置偏移量（rad），joint1向上偏移0.1 rad
@@ -43,10 +43,10 @@ use_sim_gait: false  #改 true 会报错
 #台架站立位置：
 
 # ref_joint_act: [ 0.54, 0.24, -1.68, 0.84, -1.09, -0.52, -0.21, 1.72, -0.83, 1.13]  #支架姿态
-# ref_joint_act:0.50, 0.24, -1.63, 0.92, -1.22, -0.57, -0.18, 1.71, -0.83, 1.24  feet forward
-ref_joint_act: [0.48, 0.23, -1.70, 0.90, -1.2, -0.52, -0.19, 1.69, -0.89, 1.2]  #重心微调
-# 期望：         0.4, -0.1, -1.5, 1., -1.3,          -0.4, 0.1, 1.5, -1., 1.3
-
+# ref_joint_act:0.50, 0.24, -1.63, 0.92, -1.22, -0.57, -0.18, 1.71, -0.83, 1.24  
+ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #my
+# ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #B 站博主微调
+# ref_joint_act: [ 0.4, -0.1, -1.5, 1., -1.3,          -0.4, 0.1, 1.5, -1., 1.3]    #官方
 
 #joint position limits
 
