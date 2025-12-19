@@ -13,8 +13,8 @@ control_dt: 0.015
 log_print_frequency: 2.0  # Hz，日志输出频率，默认5Hz（每秒5次）
 
 #gait frequency parameters (步态频率参数)
-initial_gait_frequency:  2.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
-gait_frequency_max: 3.0      # Hz，最大步态频率上限，默认2.0Hz（原3.5Hz，降低步频）
+initial_gait_frequency:  3.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
+gait_frequency_max: 3.5      # Hz，最大步态频率上限，默认2.0Hz（原3.5Hz，降低步频）
 gait_frequency_min: 0.2      # Hz，最小步态频率下限，默认0.2Hz（原0.5Hz，降低步频）
 
 #gait amplitude parameters (步态幅度参数，控制步幅大小)
@@ -26,13 +26,13 @@ act_inc_high: [ 3.5,  15. ] # f*2+(leg*5)*2+torso*1+(arm*4)*2 (将被上面的�
 act_inc_low: [ 0.5, -15. ]
 
 #target command ranges
-vx_cmd_range: [ -0.3, 0.5 ] #m/s
+vx_cmd_range: [ -0.2, 0.3 ] #m/s
 yr_cmd_range: [ -0.3, 0.3 ]  #rad/s
 kp_yaw_ctrl: 2.
 
 #ref joint act bias control (基于ref_joint_act的微调控制)
 enable_ref_bias_control: true  # 是否启用基于ref_joint_act的偏差控制
-ref_bias_weight: 0.05  # 回归权重，范围[0,1]，0=不回归，1=完全回归到ref_joint_act，默认0.1（轻微回归）
+ref_bias_weight: 0.2  # 回归权重，范围[0,1]，0=不回归，1=完全回归到ref_joint_act，默认0.1（轻微回归）
 
 #joint position offset (关节位置偏移量)
 joint_offset: [ 0.0, 0, 0, 0, 0.0, 0, 0, 0, 0.0, 0.0 ]  # 各关节的位置偏移量（rad），joint1向上偏移0.1 rad
@@ -42,10 +42,10 @@ sin_joint_idx: 1
 use_sim_gait: false  #改 true 会报错
 #台架站立位置：
 
-# ref_joint_act: [ 0.54, 0.24, -1.68, 0.84, -1.09, -0.52, -0.21, 1.72, -0.83, 1.13]  #支架姿态
+# ref_joint_act: [ 0.52, 0.22, -1.69, 0.86, -1.16, -0.53, -0.23, 1.66, -0.84, 1.15]  #支架姿态
 # ref_joint_act:0.50, 0.24, -1.63, 0.92, -1.22, -0.57, -0.18, 1.71, -0.83, 1.24  
-ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #my
-# ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #B 站博主微调
+# ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #my
+ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #B 站博主微调
 # ref_joint_act: [ 0.4, -0.1, -1.5, 1., -1.3,          -0.4, 0.1, 1.5, -1., 1.3]    #官方
 
 #joint position limits
@@ -57,7 +57,8 @@ act_pos_high: [ 0.7, 0.6, 0.0, 2.1, 0.0, 0.1, 0.3, 2.1, 0.0, 2.5 ]
 kp_soft: [ 0.,0.,0.,0.,0. , 0.,0.,0.,0.,0. ] #(hip*3+knee*1+ankle*1)*2
 kd_soft: [ 0.,0.,0.,0.,0., 0.,0.,0.,0.,0. ] #(hip*3+knee*1+ankle*1)*2
 
-kp: [ 1,0.5, 1.5, 1,1.5 , 1,0.5,1.5,1,1.5 ] #(hip*3+knee*1+ankle*1)*2
+# for position stand and rl control
+kp: [ 1,0.5, 1.5, 1,1 , 1,0.5,1.5,1,1 ] #(hip*3+knee*1+ankle*1)*2
 kd: [ 0.05,0.05,0.05,0.05,0.05, 0.05,0.05,0.05,0.05,0.05 ] #(hip*3+knee*1+ankle*1)*2
 
 #torque protection (力矩保护)
