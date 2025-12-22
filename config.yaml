@@ -13,7 +13,7 @@ control_dt: 0.015
 log_print_frequency: 2.0  # Hz，日志输出频率，默认5Hz（每秒5次）
 
 #gait frequency parameters (步态频率参数)
-initial_gait_frequency:  3.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
+initial_gait_frequency:  2.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
 gait_frequency_max: 3.5      # Hz，最大步态频率上限，默认2.0Hz（原3.5Hz，降低步频）
 gait_frequency_min: 0.2      # Hz，最小步态频率下限，默认0.2Hz（原0.5Hz，降低步频）
 
@@ -26,7 +26,7 @@ act_inc_high: [ 3.5,  15. ] # f*2+(leg*5)*2+torso*1+(arm*4)*2 (将被上面的�
 act_inc_low: [ 0.5, -15. ]
 
 #target command ranges
-vx_cmd_range: [ -0.2, 0.3 ] #m/s
+vx_cmd_range: [ -0.1, 0.25 ] #m/s
 yr_cmd_range: [ -0.3, 0.3 ]  #rad/s
 kp_yaw_ctrl: 2.
 
@@ -45,7 +45,7 @@ use_sim_gait: false  #改 true 会报错
 # ref_joint_act: [ 0.52, 0.22, -1.69, 0.86, -1.16, -0.53, -0.23, 1.66, -0.84, 1.15]  #支架姿态
 # ref_joint_act:0.50, 0.24, -1.63, 0.92, -1.22, -0.57, -0.18, 1.71, -0.83, 1.24  
 # ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #my
-ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #B 站博主微调
+ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.22, 1.35, -1.2, 1.1]  #B 站博主微调
 # ref_joint_act: [ 0.4, -0.1, -1.5, 1., -1.3,          -0.4, 0.1, 1.5, -1., 1.3]    #官方
 
 #joint position limits
