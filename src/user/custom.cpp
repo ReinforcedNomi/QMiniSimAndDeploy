@@ -1,9 +1,9 @@
+
 //
 // Created by cyy on 24-10-7.
 //
 
 #include "user/custom.hpp"
-#include <iomanip>
 
 
 void G1::ModeProcess() {
@@ -35,28 +35,8 @@ void G1::Control() {
             dataReporter.close();
             usleep(1e3);
             exit(1);
-        case 'x':
-            ///X键 电机泄力模式
-            // 不修改 _kp 和 _kd 的值，只在 set_rl_joint_act2dds_motor_command 中设置电机命令的 kp 和 kd 为 0
-            // 保持当前关节位置，但将kp和kd设为0，实现泄力
-            break;
-        case 'r':
-            ///R键 电机软件复位（清除故障码）
-            // 通过模式切换（BRAKE -> FOC）来清除故障码，无需断电重启
-            // 复位期间保持泄力模式（kp=kd=0），复位完成后需要手动切换到其他模式
-            // 注意：复位完成后不会自动切换，用户可以手动切换到其他模式（如'2'stand模式）
-            if (!Motor_control.IsResetting()) {
-                Motor_control.SoftwareReset();
-                std::cout << "\033[36m[Motor Reset] Reset initiated. After completion, press '2' for stand mode\033[0m" << std::endl;
-            }
-            break;
         case '2':
             ///to stand
-            // 从配置恢复 KP 和 Kd 的值（如果之前被修改了）
-            for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-                rlController->_kp[i] = rlController->configParams.kp.at(i);
-                rlController->_kd[i] = rlController->configParams.kd.at(i);
-            }
             rlController->stand_control(ratio);
             break;
         case '3':
@@ -78,110 +58,9 @@ void G1::Control() {
     }
     rlController->set_rl_joint_act2dds_motor_command(current_mode);
     control_count++;
-    // 根据配置的日志打印频率计算打印间隔
-    // 打印间隔 = 控制频率 / 日志打印频率
-    // 例如：控制频率=67Hz，日志频率=5Hz，则每13.4次打印一次，取整为13次
-    int print_interval = static_cast<int>(1.0 / control_dt_ / rlController->configParams.log_print_frequency);
-    if (print_interval < 1) print_interval = 1;  // 至少每次打印一次
-    if (control_count % print_interval == 0) {
+    if (control_count % 150 == 0) {
         control_count = 0;
-        // 格式化输出当前关节位置，保留两位小数
-        cout << "Q: [ ";
-        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-            cout << std::fixed << std::setprecision(2) << rlController->joint_pos[i];
-            if (i < rlController->NUM_JOINTS - 1) {
-                cout << ", ";
-            }
-        }
-        cout << " ]" << endl;
-        
-        // 格式化输出下一帧目标关节位置，保留两位小数
-        cout << "N: [ ";
-        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-            cout << std::fixed << std::setprecision(2) << rlController->joint_act[i];
-            if (i < rlController->NUM_JOINTS - 1) {
-                cout << ", ";
-            }
-        }
-        cout << " ]" << endl;
-        
-        // 格式化输出实时输出扭矩，保留两位小数
-        cout << "F: [ ";
-        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-            cout << std::fixed << std::setprecision(2) << rlController->joint_tau[i];
-            if (i < rlController->NUM_JOINTS - 1) {
-                cout << ", ";
-            }
-        }
-        cout << " ]" << endl;
-        
-        // 格式化输出前进指令和旋转指令，保留两位小数
-        cout << "C: [ ";
-        cout << std::fixed << std::setprecision(2) << rlController->target_command(0) << ", ";
-        cout << std::fixed << std::setprecision(2) << rlController->target_command(1);
-        cout << " ]" << endl;
-        
-        // 格式化输出IMU观测量，保留两位小数
-        // I: [ roll, pitch, yaw, roll_rate, pitch_rate, yaw_rate, acc_x, acc_y, acc_z ]
-        // 直接从base_state_buffer_读取最新数据，而不是依赖可能未更新的rlController变量
-        const std::shared_ptr<const BaseState> base_state = base_state_buffer_.GetData();
-        cout << "I: [ ";
-        if (base_state) {
-            // 姿态角 (roll, pitch, yaw)
-            cout << std::fixed << std::setprecision(2) << base_state->rpy.at(0) << ", ";
-            cout << std::fixed << std::setprecision(2) << base_state->rpy.at(1) << ", ";
-            cout << std::fixed << std::setprecision(2) << base_state->rpy.at(2) << ", ";
-            // 角速度 (roll_rate, pitch_rate, yaw_rate)
-            cout << std::fixed << std::setprecision(2) << base_state->omega.at(0) << ", ";
-            cout << std::fixed << std::setprecision(2) << base_state->omega.at(1) << ", ";
-            cout << std::fixed << std::setprecision(2) << base_state->omega.at(2) << ", ";
-            // 加速度 (acc_x, acc_y, acc_z)
-            cout << std::fixed << std::setprecision(2) << base_state->acc.at(0) << ", ";
-            cout << std::fixed << std::setprecision(2) << base_state->acc.at(1) << ", ";
-            cout << std::fixed << std::setprecision(2) << base_state->acc.at(2);
-        } else {
-            // 如果base_state为空，使用rlController中的值（可能未更新）
-            cout << std::fixed << std::setprecision(2) << rlController->base_rpy(0) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_rpy(1) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_rpy(2) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_rpy_rate(0) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_rpy_rate(1) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_rpy_rate(2) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_acc(0) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_acc(1) << ", ";
-            cout << std::fixed << std::setprecision(2) << rlController->base_acc(2);
-        }
-        cout << " ]" << endl;
-        
-        // 检查并输出错误码（仅在有关节报错时输出）
-        const std::array<MotorData, 10> &motor_data = Motor_control.GetData();
-        bool has_error = false;
-        for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-            // 验证错误码在合理范围内（0-7），过滤异常值
-            int merror_value = motor_data[i].merror;
-            if (merror_value > 0 && merror_value <= 7) {
-                has_error = true;
-                break;
-            }
-        }
-        if (has_error) {
-            cout << "E: [ ";
-            for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-                int merror_value = motor_data[i].merror;
-                // 如果错误码超出范围，显示为0（表示无法解析或数据异常）
-                if (merror_value < 0 || merror_value > 7) {
-                    cout << 0;
-                } else {
-                    cout << merror_value;
-                }
-                if (i < rlController->NUM_JOINTS - 1) {
-                    cout << ", ";
-                }
-            }
-            cout << " ]" << endl;
-        }
-        
-        cout << endl;  // 输出后添加空行
+        cout << "q: " << rlController->joint_pos.transpose() << endl;
 //        cout << "rpy: " << rlController->base_rpy.transpose() << endl;
     }
 }
@@ -204,7 +83,7 @@ void G1::RecordMotorState(const std::array<MotorData, 10> &data) {
         ms_tmp.q.at(i) = data[i].q;
         ms_tmp.dq.at(i) = data[i].dq;
         ms_tmp.ddq.at(i) = 0.;
-        ms_tmp.tau_est.at(i) = data[i].tau;  // 修复：从电机数据读取真实的力矩值，而不是设为0
+        ms_tmp.tau_est.at(i) = 0.;
     }
     motor_state_buffer_.SetData(ms_tmp);
 //    std::cout << "q: " << ms_tmp.q.at(0)<<endl;
@@ -254,27 +133,4 @@ void G1::IMUStateReader() {
     } else {
         std::cerr << "Failed to fetch IMU data" << std::endl;
     }
-}
-
-/**
- * @brief 打印当前关节位置（YAML格式），用于设置零位
- * 
- * 使用方法：
- * 1. 将机器人调整到想要的零位姿态
- * 2. 在代码中调用此函数，或从终端触发
- * 3. 复制输出的YAML格式内容到config.yaml的ref_joint_act字段
- */
-void G1::PrintCurrentJointPositionAsZero() {
-    rlController->convert_dds_state2rl_state();  // 确保获取最新关节位置
-    cout << "\n========== 当前关节位置（零位设置） ==========" << endl;
-    cout << "# 将以下内容复制到 config.yaml 的 ref_joint_act 字段：" << endl;
-    cout << "ref_joint_act: [ ";
-    for (int i = 0; i < rlController->NUM_JOINTS; ++i) {
-        cout << std::fixed << std::setprecision(3) << rlController->joint_pos[i];
-        if (i < rlController->NUM_JOINTS - 1) {
-            cout << ", ";
-        }
-    }
-    cout << " ]" << endl;
-    cout << "===============================================\n" << endl;
 }

@@ -42,7 +42,6 @@ public:
     Vec10<float> joint_pos, joint_vel, joint_tau, joint_acc, joint_pos_error, joint_act, init_joint_act, motion_test_start_joint_act,
             motion_test_end_joint_act;
     Vec10<float> output_joint_act;
-    Vec10<float> joint_vel_target;  // 目标关节速度（用于回零时的速度前馈）
 
     Matrix<float, Dynamic, 1> action_increment;
     Matrix<float, Dynamic, 1> observation;
@@ -56,11 +55,6 @@ public:
 
     Vec10<float> _kp, _kd;
     Vec10<float> _kp_soft, _kd_soft;
-    
-    // 力矩保护相关
-    Vec10<float> _torque_limit;  // 力矩上限
-    Vec10<float> torque_exceed_duration;  // 力矩超过阈值的持续时间
-    bool _torque_protection_active = false;  // 力矩保护是否已激活
 
     ConfigParams configParams;
 
@@ -92,12 +86,9 @@ private:
     void joystick_command_process();
 
 
-    void smooth_joint_action(float ratio, const Vec10<float> &end_joint_act, float dt, float max_vel = 0.5f);
+    void smooth_joint_action(float ratio, const Vec10<float> &end_joint_act);
 
     float get_true_loop_period();
-    
-    // S曲线插值函数，使运动更平滑
-    float smooth_interpolation(float t);
 
 public:
     void init();

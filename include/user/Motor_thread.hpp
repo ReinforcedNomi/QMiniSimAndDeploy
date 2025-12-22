@@ -1,3 +1,4 @@
+
 #include <unistd.h>
 #include <iostream>
 #include <vector>
@@ -18,18 +19,13 @@ struct SerialGroup {
     std::vector<int> motorIDs;
 };
 
-// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if00-port0 -> ../../ttyUSB1
-// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if01-port0 -> ../../ttyUSB2
-// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if02-port0 -> ../../ttyUSB3
-// lrwxrwxrwx 1 root root 13 11月 25 20:19 /dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if03-port0 -> ../../ttyUSB4
-
 class MotorController {
 public:
     std::vector<SerialGroup> serialGroups = {
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if00-port0", {0,5}},
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if03-port0", {0,5}},
         {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if01-port0", {1,6}},
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if02-port0", {2, 3, 4}},
-        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if03-port0", {7, 8, 9}}
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if00-port0", {2, 3, 4}},
+        {"/dev/serial/by-id/usb-FTDI_USB__-__Serial_Converter_FTAUA624-if02-port0", {7, 8, 9}}
     };
     MotorController() {
         InitializeSerialPorts();
@@ -87,10 +83,9 @@ public:
     /// Startq（0位偏移）： 左腿roll 内扣，则需增大，右腿内扣则需减小
     // std::array<float, 10> Startq ={0.65,  0.45 , 1.28,   0.86,  0.56,
     //                                0.8, 0.,  0.301131,  0.513495,  0.2};
-    //实际零位Q: [ 0.40, -0.29, -1.28, 1.20, 0.99, -0.61, 0.24, -1.24, -1.45, -1.14 ]
     std::array<float, 10> Startq ={0.08, 0.01, 2.06, 0.00, 1.56, 1.13, 0.27, -0.84, 1.33, -0.95};
-    // std::array<float, 10> Startq ={0,  0 , 0,  0,  0, 0, 0,  0,  0,  0};
-// 
+    //    std::array<float, 10> Startq ={0.,  0. , 0,   0.0,  0.0, 0.0, -0.0,  0.0,  0.0,  0.0};
+
     std::array<MotorData, 10> allMotorData;
     float Speed_Ratio = 6.33;
     float Gear_Ratio = 3.;
@@ -102,14 +97,7 @@ public:
 
     void InitializeSerialPorts() {
         for(std::vector<SerialGroup>::iterator group = serialGroups.begin(); group != serialGroups.end(); ++group) {
-            // 增加超时时间从 20ms 到 50ms，减少通信超时警告
-            std::unique_ptr<SerialPort> port = std::make_unique<SerialPort>(
-                group->port,
-                16,        // recvLength
-                4000000,   // baudrate
-                50000,     // timeOutUs: 从 20000 (20ms) 增加到 50000 (50ms)
-                BlockYN::NO
-            );
+            std::unique_ptr<SerialPort> port = std::make_unique<SerialPort>(group->port);
             serialPorts.push_back(std::move(port));
         }
     }
@@ -133,9 +121,6 @@ public:
                 data.motorType = MotorType::GO_M8010_6;
                 serial.sendRecv(&cmd, &data);
                 ParseMotorFeedback(data, *motorID);
-                
-                // 添加小延迟，避免同一串口上多个电机通信冲突
-                std::this_thread::sleep_for(std::chrono::microseconds(200));
             }
             td.count++;
           }
@@ -182,36 +167,9 @@ public:
         std::cout << std::endl;
     }
 
-    // 软件复位相关成员变量
-    std::atomic<bool> reset_in_progress{false};
-    std::chrono::time_point<std::chrono::steady_clock> reset_start_time;
-    static constexpr int RESET_DURATION_MS = 500; // 复位持续时间500ms
-    
     void ConfigureMotorCommand(MotorCmd& cmd, int motorID, const unitree_hg::msg::dds_::LowCmd_& dds_low_command) {
         cmd.motorType = MotorType::GO_M8010_6;
-        
-        // 如果正在软件复位，先切换到BRAKE模式，然后再切换回FOC模式
-        if (reset_in_progress) {
-            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
-                std::chrono::steady_clock::now() - reset_start_time).count();
-            
-            if (elapsed < RESET_DURATION_MS / 2) {
-                // 前250ms：切换到BRAKE模式（锁定模式）
-                cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::BRAKE);
-            } else {
-                // 后250ms：切换回FOC模式
-                cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::FOC);
-                
-                if (elapsed >= RESET_DURATION_MS) {
-                    // 复位完成
-                    reset_in_progress = false;
-                    std::cout << "\033[32m[Motor Reset] Software reset completed for all motors\033[0m" << std::endl;
-                }
-            }
-        } else {
-            cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::FOC);
-        }
-        
+        cmd.mode = queryMotorMode(MotorType::GO_M8010_6, MotorMode::FOC);
         cmd.id = CalculateChannelID(motorID);
         cmd.kp = dds_low_command.motor_cmd().at(motorID).kp();
         cmd.kd = dds_low_command.motor_cmd().at(motorID).kd();
@@ -223,24 +181,6 @@ public:
         cmd.q = (dds_low_command.motor_cmd().at(motorID).q() + Startq[motorID]) * ratio;
         cmd.dq = dds_low_command.motor_cmd().at(motorID).dq() * ratio;
     }
-    
-    // 软件复位函数：通过模式切换清除故障码
-    void SoftwareReset() {
-        if (reset_in_progress) {
-            std::cout << "\033[33m[Motor Reset] Reset already in progress, please wait...\033[0m" << std::endl;
-            return;
-        }
-        
-        reset_in_progress = true;
-        reset_start_time = std::chrono::steady_clock::now();
-        std::cout << "\033[33m[Motor Reset] Starting software reset (BRAKE -> FOC mode switch)...\033[0m" << std::endl;
-        std::cout << "\033[33m[Motor Reset] This will take approximately " << RESET_DURATION_MS << "ms\033[0m" << std::endl;
-    }
-    
-    // 检查是否正在复位
-    bool IsResetting() const {
-        return reset_in_progress;
-    }
 
     void ParseMotorFeedback(MotorData& data, int motorID) {
         const bool is_special = IsSpecialMotor(motorID);
@@ -248,16 +188,6 @@ public:
         
         allMotorData.at(motorID).q = data.q / ratio - Startq[motorID];
         allMotorData.at(motorID).dq = data.dq / ratio;
-        allMotorData.at(motorID).tau = data.tau;  // 保存力矩数据
-        // 确保merror值在合理范围内（0-7），因为MError是3位位域
-        // 如果merror值异常，可能是未初始化或读取错误，将其限制在有效范围内
-        int merror_value = data.merror;
-        if (merror_value < 0 || merror_value > 7) {
-            // 值异常，可能是未初始化，设为0（正常状态）
-            allMotorData.at(motorID).merror = 0;
-        } else {
-            allMotorData.at(motorID).merror = merror_value;
-        }
     }
 
     const std::array<MotorData, 10> &GetData() const {

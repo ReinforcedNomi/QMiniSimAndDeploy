@@ -4,47 +4,21 @@ num_actions: 12
 num_observations: 43
 num_stacks: 3
 
-#ONNX model path
-onnx_model_path: "policy.onnx"  # 模型文件路径（相对于可执行文件运行目录）
-
 control_dt: 0.015
-
-#log print frequency (日志打印频率)
-log_print_frequency: 2.0  # Hz，日志输出频率，默认5Hz（每秒5次）
-
-#gait frequency parameters (步态频率参数)
-initial_gait_frequency:  2.0 # Hz，初始步态频率，默认0.3Hz（降低步频）
-gait_frequency_max: 3.5      # Hz，最大步态频率上限，默认2.0Hz（原3.5Hz，降低步频）
-gait_frequency_min: 0.2      # Hz，最小步态频率下限，默认0.2Hz（原0.5Hz，降低步频）
-
-#gait amplitude parameters (步态幅度参数，控制步幅大小)
-joint_increment_max: 15.0    # rad/s，关节增量最大值，默认10.0（原15.0，降低步幅）
-joint_increment_min: -15.0   # rad/s，关节增量最小值，默认-10.0（原-15.0，降低步幅）
-
 #joint position increments limits
-act_inc_high: [ 3.5,  15. ] # f*2+(leg*5)*2+torso*1+(arm*4)*2 (将被上面的参数覆盖)
+act_inc_high: [ 3.5,  15. ] # f*2+(leg*5)*2+torso*1+(arm*4)*2
 act_inc_low: [ 0.5, -15. ]
 
 #target command ranges
-vx_cmd_range: [ -0.1, 0.25 ] #m/s
-yr_cmd_range: [ -0.3, 0.3 ]  #rad/s
+vx_cmd_range: [ -0.3, 0.5 ] #m/s
+yr_cmd_range: [ -1., 1. ]  #rad/s
 kp_yaw_ctrl: 2.
-
-#ref joint act bias control (基于ref_joint_act的微调控制)
-enable_ref_bias_control: true  # 是否启用基于ref_joint_act的偏差控制
-ref_bias_weight: 0.2  # 回归权重，范围[0,1]，0=不回归，1=完全回归到ref_joint_act，默认0.1（轻微回归）
-
-#joint position offset (关节位置偏移量)
-joint_offset: [ 0.0, 0, 0, 0, 0.0, 0, 0, 0, 0.0, 0.0 ]  # 各关节的位置偏移量（rad），joint1向上偏移0.1 rad
 
 #reference joint action
 sin_joint_idx: 1
-use_sim_gait: false  #改 true 会报错
-#台架站立位置：
-
+use_sim_gait: false
 # ref_joint_act: [ 0.52, 0.22, -1.69, 0.86, -1.16, -0.53, -0.23, 1.66, -0.84, 1.15]  #支架姿态
-# ref_joint_act:0.50, 0.24, -1.63, 0.92, -1.22, -0.57, -0.18, 1.71, -0.83, 1.24  
-# ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #my
+# ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.28, 1.35, -1.2, 1.1]  #m
 ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.22, 1.35, -1.2, 1.1]  #B 站博主微调
 # ref_joint_act: [ 0.4, -0.1, -1.5, 1., -1.3,          -0.4, 0.1, 1.5, -1., 1.3]    #官方
 
@@ -52,6 +26,8 @@ ref_joint_act: [0.55, 0.25, -1.35, 1.2, -1.10,    -0.55, -0.22, 1.35, -1.2, 1.1]
 
 act_pos_low: [ -0.1, -0.3, -2.1, 0.0, -2.5, -0.7, -0.6, 0.0, -2.1, 0.0 ]
 act_pos_high: [ 0.7, 0.6, 0.0, 2.1, 0.0, 0.1, 0.3, 2.1, 0.0, 2.5 ]
+
+
 #motor stiffness and damping
 # for soft control
 kp_soft: [ 0.,0.,0.,0.,0. , 0.,0.,0.,0.,0. ] #(hip*3+knee*1+ankle*1)*2
@@ -61,12 +37,5 @@ kd_soft: [ 0.,0.,0.,0.,0., 0.,0.,0.,0.,0. ] #(hip*3+knee*1+ankle*1)*2
 kp: [ 1,0.5, 1.5, 1,1 , 1,0.5,1.5,1,1 ] #(hip*3+knee*1+ankle*1)*2
 kd: [ 0.05,0.05,0.05,0.05,0.05, 0.05,0.05,0.05,0.05,0.05 ] #(hip*3+knee*1+ankle*1)*2
 
-#torque protection (力矩保护)
-enable_torque_protection: true  # 是否启用力矩保护
-torque_limit: [ 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 ]  # 每个关节的力矩上限 (N·m)，超过此值自动泄力
-torque_protection_duration: 0.5  # 力矩超过阈值后持续多长时间才触发保护 (秒)
-#LB 按键启动步态
-#A站立
-#Y泄力
-#B退出
-
+#log print frequency
+log_print_frequency: 2.0  # 日志打印频率(Hz)
