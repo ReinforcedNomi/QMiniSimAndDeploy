@@ -88,8 +88,14 @@ echo -e "\n${GREEN}========================================${NC}"
 echo -e "${GREEN}编译安装完成！${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo -e "\n可执行文件位置:"
-echo -e "  ${GREEN}$INSTALL_DIR_X86_64/bin/run_interface${NC}"
-ls -lh "$INSTALL_DIR_X86_64/bin/run_interface" 2>/dev/null || echo "文件不存在"
+echo -e "  ${GREEN}$INSTALL_DIR_X64/bin/run_interface${NC}"
+ls -lh "$INSTALL_DIR_X64/bin/run_interface" 2>/dev/null || echo "文件不存在"
+
+if [ -f "$INSTALL_DIR_X86_64/bin/run_interface" ]; then
+    echo -e "\n备份位置:"
+    echo -e "  ${GREEN}$INSTALL_DIR_X86_64/bin/run_interface${NC}"
+    ls -lh "$INSTALL_DIR_X86_64/bin/run_interface" 2>/dev/null
+fi
 
 echo -e "\n${YELLOW}提示:${NC}"
 echo -e "  运行程序: ./start_qmini_进程.sh"

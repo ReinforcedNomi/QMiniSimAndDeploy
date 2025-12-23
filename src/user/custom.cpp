@@ -4,6 +4,7 @@
 //
 
 #include "user/custom.hpp"
+#include <iomanip>
 
 
 void G1::ModeProcess() {
@@ -58,10 +59,61 @@ void G1::Control() {
     }
     rlController->set_rl_joint_act2dds_motor_command(current_mode);
     control_count++;
-    if (control_count % 150 == 0) {
+    // 2Hz打印频率: control_dt=0.015s, 2Hz=0.5s, 0.5/0.015≈33
+    int print_interval = static_cast<int>(1.0f / (rlController->configParams.log_print_frequency * control_dt_));
+    if (control_count % print_interval == 0) {
         control_count = 0;
-        cout << "q: " << rlController->joint_pos.transpose() << endl;
-//        cout << "rpy: " << rlController->base_rpy.transpose() << endl;
+        // Q: 当前关节位置，前5个和后5个用多个空格隔开，保留2位小数
+        cout << "Q:[";
+        for (int i = 0; i < 5; i++) {
+            if (i > 0) cout << ",";
+            cout << std::fixed << std::setprecision(2) << rlController->joint_pos[i];
+        }
+        cout << ",         ";
+        for (int i = 5; i < 10; i++) {
+            if (i > 5) cout << ",";
+            cout << std::fixed << std::setprecision(2) << rlController->joint_pos[i];
+        }
+        cout << "]" << endl;
+        
+        // N: 下一时刻的目标位置
+        cout << "N:[";
+        for (int i = 0; i < 5; i++) {
+            if (i > 0) cout << ",";
+            cout << std::fixed << std::setprecision(2) << rlController->joint_act[i];
+        }
+        cout << ",         ";
+        for (int i = 5; i < 10; i++) {
+            if (i > 5) cout << ",";
+            cout << std::fixed << std::setprecision(2) << rlController->joint_act[i];
+        }
+        cout << "]" << endl;
+        
+        // F: 各电机扭矩
+        cout << "f:[";
+        for (int i = 0; i < 5; i++) {
+            if (i > 0) cout << ",";
+            cout << std::fixed << std::setprecision(2) << rlController->joint_tau[i];
+        }
+        cout << ",         ";
+        for (int i = 5; i < 10; i++) {
+            if (i > 5) cout << ",";
+            cout << std::fixed << std::setprecision(2) << rlController->joint_tau[i];
+        }
+        cout << "]" << endl;
+        
+        // I: IMU数据 (rpy)
+        cout << "I:[";
+        cout << std::fixed << std::setprecision(2) << rlController->base_rpy[0] << ",";
+        cout << std::fixed << std::setprecision(2) << rlController->base_rpy[1] << ",";
+        cout << std::fixed << std::setprecision(2) << rlController->base_rpy[2];
+        cout << "]" << endl;
+        
+        // C: 控制指令 (vx_cmd, yr_cmd)
+        cout << "C:[";
+        cout << std::fixed << std::setprecision(2) << rlController->target_command[0] << ",";
+        cout << std::fixed << std::setprecision(2) << rlController->target_command[1];
+        cout << "]" << endl;
     }
 }
 
