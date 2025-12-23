@@ -90,7 +90,7 @@ void G1::Control() {
         cout << "]" << endl;
         
         // F: 各电机扭矩
-        cout << "f:[";
+        cout << "F:[";
         for (int i = 0; i < 5; i++) {
             if (i > 0) cout << ",";
             cout << std::fixed << std::setprecision(2) << rlController->joint_tau[i];

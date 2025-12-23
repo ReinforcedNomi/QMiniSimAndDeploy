@@ -156,6 +156,8 @@ void RLController::joystick_command_process() {
         yr_cmd = std::clamp(yr_cmd, -yr_max, yr_max);
         vx_cmd = std::clamp(vx_cmd, vx_min, vx_max);
     }
+    // 将方向指令写死为0
+    yr_cmd = 0.0f;
     target_command << vx_cmd, yr_cmd;
 }
 
