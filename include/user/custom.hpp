@@ -156,7 +156,7 @@ class G1 {
         float control_dt_ = 0.01f;
         float relative_time = 0.f;
         int control_count = 0;
-        float MOVE_DURATION = 5.f;
+        float MOVE_DURATION = 3.f;  // 站立姿态切换时间：3秒
     
         // multithreading
         ThreadPtr command_writer_ptr_;

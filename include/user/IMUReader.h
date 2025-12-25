@@ -86,6 +86,8 @@ public:
         qy = root["qy"].asFloat();
         qz = root["qz"].asFloat();
 
+        //displayData();
+
         return true;
     }
 

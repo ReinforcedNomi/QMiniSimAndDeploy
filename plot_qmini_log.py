@@ -33,6 +33,7 @@ _data_cache = {
     'n_data': [],
     'f_data': [],
     'c_data': [],  # 控制指令数据 [前进指令, 旋转指令]
+    'i_data': [],  # IMU数据 [roll, pitch, yaw]
     'timestamps': []  # 记录每条数据的时间戳
 }
 # 数据更新频率：每秒1次（与日志输出频率一致）
@@ -81,14 +82,16 @@ def parse_log_file_incremental(log_file_path):
         'q_data': [],
         'n_data': [],
         'f_data': [],
-        'c_data': []
+        'c_data': [],
+        'i_data': []
     }
     
-    # Q、N、F、C 的正则表达式
+    # Q、N、F、C、I 的正则表达式
     q_pattern = re.compile(r'Q:\s*\[\s*([-\d\.\s,]+)\s*\]')
     n_pattern = re.compile(r'N:\s*\[\s*([-\d\.\s,]+)\s*\]')
     f_pattern = re.compile(r'F:\s*\[\s*([-\d\.\s,]+)\s*\]')
     c_pattern = re.compile(r'C:\s*\[\s*([-\d\.\s,]+)\s*\]')
+    i_pattern = re.compile(r'I:\s*\[\s*([-\d\.\s,]+)\s*\]')
     
     try:
         with open(log_file_path, 'r', encoding='utf-8') as f:
@@ -129,6 +132,14 @@ def parse_log_file_incremental(log_file_path):
                     c_values = [float(x.strip()) for x in c_str.split(',') if x.strip()]
                     if len(c_values) == 2:
                         new_data['c_data'].append(c_values)
+                
+                # 匹配 I 数据（IMU：roll, pitch, yaw）
+                i_match = i_pattern.search(line)
+                if i_match:
+                    i_str = i_match.group(1)
+                    i_values = [float(x.strip()) for x in i_str.split(',') if x.strip()]
+                    if len(i_values) == 3:
+                        new_data['i_data'].append(i_values)
             
             # 更新文件位置
             _last_file_position = f.tell()
@@ -158,12 +169,14 @@ def parse_log_file(log_file_path):
     n_data = []
     f_data = []
     c_data = []
+    i_data = []
     
-    # Q、N、F、C 的正则表达式
+    # Q、N、F、C、I 的正则表达式
     q_pattern = re.compile(r'Q:\s*\[\s*([-\d\.\s,]+)\s*\]')
     n_pattern = re.compile(r'N:\s*\[\s*([-\d\.\s,]+)\s*\]')
     f_pattern = re.compile(r'F:\s*\[\s*([-\d\.\s,]+)\s*\]')
     c_pattern = re.compile(r'C:\s*\[\s*([-\d\.\s,]+)\s*\]')
+    i_pattern = re.compile(r'I:\s*\[\s*([-\d\.\s,]+)\s*\]')
     
     try:
         with open(log_file_path, 'r', encoding='utf-8') as f:
@@ -201,15 +214,23 @@ def parse_log_file(log_file_path):
                     c_values = [float(x.strip()) for x in c_str.split(',') if x.strip()]
                     if len(c_values) == 2:
                         c_data.append(c_values)
+                
+                # 匹配 I 数据（IMU：roll, pitch, yaw）
+                i_match = i_pattern.search(line)
+                if i_match:
+                    i_str = i_match.group(1)
+                    i_values = [float(x.strip()) for x in i_str.split(',') if x.strip()]
+                    if len(i_values) == 3:
+                        i_data.append(i_values)
     
     except FileNotFoundError:
         print(f"错误: 找不到文件 {log_file_path}")
-        return None, None, None, None
+        return None, None, None, None, None
     except Exception as e:
         print(f"错误: 读取文件时出错: {e}")
-        return None, None, None, None
+        return None, None, None, None, None
     
-    return q_data, n_data, f_data, c_data
+    return q_data, n_data, f_data, c_data, i_data
 
 def update_data_cache(new_data, current_time):
     """
@@ -246,6 +267,11 @@ def update_data_cache(new_data, current_time):
         for c_val in new_data['c_data']:
             _data_cache['c_data'].append(c_val)
     
+    # I数据（IMU）
+    if new_data and new_data.get('i_data'):
+        for i_val in new_data['i_data']:
+            _data_cache['i_data'].append(i_val)
+    
     # 移除超过30秒的旧数据
     if len(_data_cache['timestamps']) > 0:
         cutoff_time = current_time - WINDOW_DURATION
@@ -271,6 +297,9 @@ def update_data_cache(new_data, current_time):
             # C数据可能长度不同，需要分别处理
             if len(_data_cache['c_data']) > keep_start_idx:
                 _data_cache['c_data'] = _data_cache['c_data'][keep_start_idx:]
+            # I数据可能长度不同，需要分别处理
+            if len(_data_cache['i_data']) > keep_start_idx:
+                _data_cache['i_data'] = _data_cache['i_data'][keep_start_idx:]
     
     # 确保Q、N和timestamps长度一致
     min_len = min(len(_data_cache['q_data']), len(_data_cache['n_data']), len(_data_cache['timestamps']))
@@ -281,7 +310,7 @@ def update_data_cache(new_data, current_time):
     if min_len < len(_data_cache['timestamps']):
         _data_cache['timestamps'] = _data_cache['timestamps'][:min_len]
 
-def plot_joint_data(q_data, n_data, f_data=None, c_data=None, save_path=None, config_path='config.yaml'):
+def plot_joint_data(q_data, n_data, f_data=None, c_data=None, i_data=None, save_path=None, config_path='config.yaml'):
     """
     绘制关节位置波形图
     
@@ -326,7 +355,7 @@ def plot_joint_data(q_data, n_data, f_data=None, c_data=None, save_path=None, co
     # 关节名称
     joint_names = [f'Joint {i}' for i in range(10)]
     
-    # 创建子图：11行2列，前10行显示关节数据，最后一行显示控制指令
+    # 创建子图：11行2列，前10行显示关节数据，最后一行显示控制指令和IMU
     fig = plt.figure(figsize=(12, 28))
     
     # 为每个关节创建一行，包含2个子图（位置、扭矩）
@@ -360,7 +389,7 @@ def plot_joint_data(q_data, n_data, f_data=None, c_data=None, save_path=None, co
         ax2.set_ylabel('Torque (N·m)', fontsize=9)
         ax2.grid(True, alpha=0.3)
     
-    # 第11行：控制指令（C）
+    # 第11行：第一列显示前进指令，第二列显示IMU数据
     if c_data and len(c_data) > 0:
         c_array = np.array(c_data)
         if len(c_array) > min_len:
@@ -379,19 +408,30 @@ def plot_joint_data(q_data, n_data, f_data=None, c_data=None, save_path=None, co
         ax_cmd1.set_ylabel('Velocity (m/s)', fontsize=9)
         ax_cmd1.grid(True, alpha=0.3)
         ax_cmd1.legend(loc='best', fontsize=8)
+    
+    # 第二列：IMU数据（三个轴倾角）
+    if i_data and len(i_data) > 0:
+        i_array = np.array(i_data)
+        if len(i_array) > min_len:
+            i_array = i_array[:min_len]
+        elif len(i_array) < min_len:
+            i_padded = np.full((min_len, 3), np.nan)
+            i_padded[:len(i_array)] = i_array
+            i_array = i_padded
         
-        # 第二列：旋转指令
-        ax_cmd2 = plt.subplot(11, 2, 22)
-        ax_cmd2.plot(time_axis, c_array[:, 1], 'c-', label='Rotation Command (yr)', linewidth=2.0, alpha=0.8)
-        ax_cmd2.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
-        ax_cmd2.set_title('Control Command: Rotation (yr)', fontsize=11, fontweight='bold')
-        ax_cmd2.set_xlabel('Time (s)', fontsize=9)
-        ax_cmd2.set_ylabel('Angular Velocity (rad/s)', fontsize=9)
-        ax_cmd2.grid(True, alpha=0.3)
-        ax_cmd2.legend(loc='best', fontsize=8)
+        ax_imu = plt.subplot(11, 2, 22)
+        ax_imu.plot(time_axis, i_array[:, 0], 'r-', label='Roll', linewidth=2.0, alpha=0.8)
+        ax_imu.plot(time_axis, i_array[:, 1], 'g-', label='Pitch', linewidth=2.0, alpha=0.8)
+        ax_imu.plot(time_axis, i_array[:, 2], 'b-', label='Yaw', linewidth=2.0, alpha=0.8)
+        ax_imu.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
+        ax_imu.set_title('IMU Orientation (RPY)', fontsize=11, fontweight='bold')
+        ax_imu.set_xlabel('Time (s)', fontsize=9)
+        ax_imu.set_ylabel('Angle (rad)', fontsize=9)
+        ax_imu.grid(True, alpha=0.3)
+        ax_imu.legend(loc='best', fontsize=8)
     
     # 添加总标题
-    fig.suptitle('QMini Joint Data: Position (Q/N) | Torque (F) | Control Commands (C)', 
+    fig.suptitle('QMini Joint Data: Position (Q/N) | Torque (F) | Control Commands (C) | IMU (I)', 
                  fontsize=16, fontweight='bold', y=0.998)
     
     # 调整布局，给底部留更多空间
@@ -432,6 +472,7 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
     n_data = _data_cache['n_data']
     f_data = _data_cache['f_data'] if _data_cache['f_data'] else None
     c_data = _data_cache['c_data'] if _data_cache['c_data'] else None
+    i_data = _data_cache['i_data'] if _data_cache['i_data'] else None
     timestamps = _data_cache['timestamps']
     
     if len(q_data) == 0 or len(n_data) == 0:
@@ -468,6 +509,11 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
     if c_data and len(c_data) >= min_len:
         c_array = np.array(c_data[-min_len:])
     
+    # 处理I数据
+    i_array = None
+    if i_data and len(i_data) >= min_len:
+        i_array = np.array(i_data[-min_len:])
+    
     # 更新每个关节的图表
     for i in range(10):
         # 更新位置图（第一列）
@@ -498,7 +544,7 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
                 if y_range > 0:
                     axes_list[i * 2 + 1].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
     
-    # 更新控制指令图（第11行，索引20和21）
+    # 更新控制指令图（第11行第一列，索引20）
     if c_array is not None and len(c_array) > 0:
         if 20 in lines_dict:
             lines_dict[20]['c_vx'].set_data(time_axis, c_array[:, 0])
@@ -510,14 +556,18 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
                 y_range = y_max - y_min
                 if y_range > 0:
                     axes_list[20].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
-        
+    
+    # 更新IMU数据图（第11行第二列，索引21）
+    if i_array is not None and len(i_array) > 0:
         if 21 in lines_dict:
-            lines_dict[21]['c_yr'].set_data(time_axis, c_array[:, 1])
+            lines_dict[21]['i_roll'].set_data(time_axis, i_array[:, 0])
+            lines_dict[21]['i_pitch'].set_data(time_axis, i_array[:, 1])
+            lines_dict[21]['i_yaw'].set_data(time_axis, i_array[:, 2])
             if len(time_axis) > 0:
                 axes_list[21].set_xlim(0, WINDOW_DURATION)
-            if len(c_array) > 0:
-                y_min = np.min(c_array[:, 1])
-                y_max = np.max(c_array[:, 1])
+            if len(i_array) > 0:
+                y_min = min(np.min(i_array[:, 0]), np.min(i_array[:, 1]), np.min(i_array[:, 2]))
+                y_max = max(np.max(i_array[:, 0]), np.max(i_array[:, 1]), np.max(i_array[:, 2]))
                 y_range = y_max - y_min
                 if y_range > 0:
                     axes_list[21].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
@@ -543,6 +593,7 @@ def plot_real_time(log_file_path, config_path='config.yaml'):
         'n_data': [],
         'f_data': [],
         'c_data': [],
+        'i_data': [],
         'timestamps': []
     }
     _last_file_position = 0
@@ -591,7 +642,7 @@ def plot_real_time(log_file_path, config_path='config.yaml'):
         axes_list.append(ax2)
         lines_dict[i * 2 + 2] = {'f': line_f}
     
-    # 第11行：控制指令（C）
+    # 第11行：第一列显示前进指令，第二列显示IMU数据
     ax_cmd1 = plt.subplot(11, 2, 21)
     line_c_vx, = ax_cmd1.plot([], [], 'm-', label='Forward Command (vx)', linewidth=2.0, alpha=0.8)
     ax_cmd1.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
@@ -604,20 +655,22 @@ def plot_real_time(log_file_path, config_path='config.yaml'):
     axes_list.append(ax_cmd1)
     lines_dict[20] = {'c_vx': line_c_vx}
     
-    ax_cmd2 = plt.subplot(11, 2, 22)
-    line_c_yr, = ax_cmd2.plot([], [], 'c-', label='Rotation Command (yr)', linewidth=2.0, alpha=0.8)
-    ax_cmd2.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
-    ax_cmd2.set_title('Control Command: Rotation (yr)', fontsize=11, fontweight='bold')
-    ax_cmd2.set_xlabel('Time (s)', fontsize=9)
-    ax_cmd2.set_ylabel('Angular Velocity (rad/s)', fontsize=9)
-    ax_cmd2.set_xlim(0, WINDOW_DURATION)
-    ax_cmd2.grid(True, alpha=0.3)
-    ax_cmd2.legend(loc='best', fontsize=8)
-    axes_list.append(ax_cmd2)
-    lines_dict[21] = {'c_yr': line_c_yr}
+    ax_imu = plt.subplot(11, 2, 22)
+    line_i_roll, = ax_imu.plot([], [], 'r-', label='Roll', linewidth=2.0, alpha=0.8)
+    line_i_pitch, = ax_imu.plot([], [], 'g-', label='Pitch', linewidth=2.0, alpha=0.8)
+    line_i_yaw, = ax_imu.plot([], [], 'b-', label='Yaw', linewidth=2.0, alpha=0.8)
+    ax_imu.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
+    ax_imu.set_title('IMU Orientation (RPY)', fontsize=11, fontweight='bold')
+    ax_imu.set_xlabel('Time (s)', fontsize=9)
+    ax_imu.set_ylabel('Angle (rad)', fontsize=9)
+    ax_imu.set_xlim(0, WINDOW_DURATION)
+    ax_imu.grid(True, alpha=0.3)
+    ax_imu.legend(loc='best', fontsize=8)
+    axes_list.append(ax_imu)
+    lines_dict[21] = {'i_roll': line_i_roll, 'i_pitch': line_i_pitch, 'i_yaw': line_i_yaw}
     
     # 添加总标题
-    fig.suptitle(f'QMini Real-time Joint Data (Last {WINDOW_DURATION}s): Position | Torque | Control Commands', 
+    fig.suptitle(f'QMini Real-time Joint Data (Last {WINDOW_DURATION}s): Position | Torque | Control Commands | IMU', 
                  fontsize=16, fontweight='bold', y=0.998)
     
     # 调整布局，给底部留更多空间
@@ -757,7 +810,7 @@ def main():
         print(f"静态模式，读取日志文件: {log_file_path}")
         
         # 解析日志文件
-        q_data, n_data, f_data, c_data = parse_log_file(log_file_path)
+        q_data, n_data, f_data, c_data, i_data = parse_log_file(log_file_path)
         
         if q_data is None or n_data is None:
             return
@@ -772,6 +825,10 @@ def main():
             print(f"成功读取 {len(c_data)} 条 C 数据（控制指令）")
         else:
             print("未找到 C 数据（控制指令）")
+        if i_data:
+            print(f"成功读取 {len(i_data)} 条 I 数据（IMU）")
+        else:
+            print("未找到 I 数据（IMU）")
         
         if len(q_data) == 0 or len(n_data) == 0:
             print("警告: 没有找到有效数据")
@@ -793,7 +850,7 @@ def main():
         config_path = os.path.join(os.path.dirname(log_file_path), 'config.yaml')
         if not os.path.exists(config_path):
             config_path = 'config.yaml'  # 使用默认路径
-        plot_joint_data(q_data, n_data, f_data, c_data, save_path, config_path)
+        plot_joint_data(q_data, n_data, f_data, c_data, i_data, save_path, config_path)
         
         # 绘制所有关节在一张图上（可选，注释掉以禁用）
         # print("正在绘制所有关节波形图...")
