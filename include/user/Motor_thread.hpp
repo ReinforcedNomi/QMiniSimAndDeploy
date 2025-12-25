@@ -192,6 +192,7 @@ public:
         
         allMotorData.at(motorID).q = data.q / ratio - Startq[motorID];
         allMotorData.at(motorID).dq = data.dq / ratio;
+        allMotorData.at(motorID).tau = data.tau;  // 复制扭矩值（扭矩不需要比例转换）
     }
 
     const std::array<MotorData, 10> &GetData() const {
