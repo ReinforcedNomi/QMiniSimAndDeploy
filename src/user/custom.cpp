@@ -12,7 +12,7 @@ void G1::ModeProcess() {
         selected_mode = modeSwitcher.get_selected_key(current_mode);
         ModeSwitcher::print_selected_mode(selected_mode);
     } else {
-//        selected_mode = modeSwitcher.get_selected_stick(current_mode);
+    //    selected_mode = modeSwitcher.get_selected_stick(current_mode);
         selected_mode = modeSwitcher.get_selected_jskey(current_mode);
     }
     if (selected_mode != current_mode) {

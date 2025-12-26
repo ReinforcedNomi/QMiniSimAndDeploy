@@ -154,7 +154,7 @@ class G1 {
         DataBuffer<MotorCommand> motor_command_buffer_;
         DataBuffer<BaseState> base_state_buffer_;
     
-        bool _is_test_local = false;
+        bool _is_test_local = true;
         PRorAB PRorAB_mode_;
         uint8_t mode_machine_;
     

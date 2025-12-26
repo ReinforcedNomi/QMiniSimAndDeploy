@@ -8,5 +8,6 @@ sudo chmod 777 /dev/serial/by-id/*
 export LD_LIBRARY_PATH="${SCRIPT_DIR}/install/aarch64/lib/:$LD_LIBRARY_PATH"
 
 # 运行程序（使用绝对路径） 修正路径 不是x86_64
-"${SCRIPT_DIR}/install/x64/bin/run_interface" &> "${SCRIPT_DIR}/qmini_log.log" &
+# 测试模式需要键盘输入，所以在前台运行，只重定向标准错误到日志文件
+"${SCRIPT_DIR}/install/x64/bin/run_interface" 2> "${SCRIPT_DIR}/qmini_log.log"
 
