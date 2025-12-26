@@ -41,3 +41,14 @@ kd: [ 0.05,0.05,0.05,0.05,0.05, 0.05,0.05,0.05,0.05,0.05 ] #(hip*3+knee*1+ankle*
 #log print frequency
 # log_print_frequency: 10.0  # 日志打印频率(Hz)
 log_print_frequency: 1.0
+
+# // '1' - 准备就绪模式（folding）
+# // '2' - 站立模式（standing）
+# // '3' - RL行走模式（RL walking）
+# // '4' - RL站立模式（RL stand）
+# // '5' - 正弦测试模式（sin test）
+# // '6' - 模式6
+# // '7' - 模式7
+# // '8' - 模式8
+# // '9' - 模式9
+# // 'q' - 退出程序（仅在模式1时有效）
