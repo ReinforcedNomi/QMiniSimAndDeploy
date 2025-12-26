@@ -6,6 +6,7 @@
 #include <string>
 #include <stdexcept>
 #include <cstdlib>
+#include <chrono>
 #include <Python.h>
 #include "unitree/common/thread/thread.hpp"
 
@@ -88,8 +89,9 @@ class G1 {
             usleep(0.1 * 1e6);
     
             ///joystick 0.03s
-            joystick_thread_ptr_ = CreateRecurrentThreadEx("joystick", UT_CPU_ID_NONE, 0.004 * 1e6,
-                                                           &G1::RunJoystick, this);
+            // 注释掉手柄读取进程，用于测试
+            // joystick_thread_ptr_ = CreateRecurrentThreadEx("joystick", UT_CPU_ID_NONE, 0.004 * 1e6,
+            //                                                &G1::RunJoystick, this);
             usleep(0.1 * 1e6);
     
     
@@ -105,6 +107,9 @@ class G1 {
             usleep(0.1 * 1e6);
     
             ModeSwitcher::print_selected_mode(current_mode);
+            
+            // 记录程序启动时间，用于3秒后自动启动站立
+            program_start_time_ = std::chrono::steady_clock::now();
     
         }
     
@@ -115,7 +120,7 @@ class G1 {
     
     public:
         char current_mode = '1';
-        char selected_mode = '2';
+        char selected_mode = '1';  // 初始模式设为'1'，3秒后自动切换到'2'
     
         ModeSwitcher modeSwitcher; // NOTE! There is no WirelessController_.hpp in robot type 'hg'. This is for go2.
         DataReporter dataReporter;
@@ -155,6 +160,8 @@ class G1 {
     
         float control_dt_ = 0.01f;
         float relative_time = 0.f;
+        std::chrono::steady_clock::time_point program_start_time_;  // 程序启动时间
+        bool auto_stand_triggered_ = false;  // 是否已触发自动站立
         int control_count = 0;
         float MOVE_DURATION = 3.f;  // 站立姿态切换时间：3秒
     

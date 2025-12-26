@@ -422,9 +422,8 @@ def plot_joint_data(q_data, n_data, f_data=None, c_data=None, i_data=None, save_
         ax_imu = plt.subplot(11, 2, 22)
         ax_imu.plot(time_axis, i_array[:, 0], 'r-', label='Roll', linewidth=2.0, alpha=0.8)
         ax_imu.plot(time_axis, i_array[:, 1], 'g-', label='Pitch', linewidth=2.0, alpha=0.8)
-        ax_imu.plot(time_axis, i_array[:, 2], 'b-', label='Yaw', linewidth=2.0, alpha=0.8)
         ax_imu.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
-        ax_imu.set_title('IMU Orientation (RPY)', fontsize=11, fontweight='bold')
+        ax_imu.set_title('IMU Orientation (RP)', fontsize=11, fontweight='bold')
         ax_imu.set_xlabel('Time (s)', fontsize=9)
         ax_imu.set_ylabel('Angle (rad)', fontsize=9)
         ax_imu.grid(True, alpha=0.3)
@@ -562,12 +561,11 @@ def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
         if 21 in lines_dict:
             lines_dict[21]['i_roll'].set_data(time_axis, i_array[:, 0])
             lines_dict[21]['i_pitch'].set_data(time_axis, i_array[:, 1])
-            lines_dict[21]['i_yaw'].set_data(time_axis, i_array[:, 2])
             if len(time_axis) > 0:
                 axes_list[21].set_xlim(0, WINDOW_DURATION)
             if len(i_array) > 0:
-                y_min = min(np.min(i_array[:, 0]), np.min(i_array[:, 1]), np.min(i_array[:, 2]))
-                y_max = max(np.max(i_array[:, 0]), np.max(i_array[:, 1]), np.max(i_array[:, 2]))
+                y_min = min(np.min(i_array[:, 0]), np.min(i_array[:, 1]))
+                y_max = max(np.max(i_array[:, 0]), np.max(i_array[:, 1]))
                 y_range = y_max - y_min
                 if y_range > 0:
                     axes_list[21].set_ylim(y_min - y_range * 0.1, y_max + y_range * 0.1)
@@ -658,16 +656,15 @@ def plot_real_time(log_file_path, config_path='config.yaml'):
     ax_imu = plt.subplot(11, 2, 22)
     line_i_roll, = ax_imu.plot([], [], 'r-', label='Roll', linewidth=2.0, alpha=0.8)
     line_i_pitch, = ax_imu.plot([], [], 'g-', label='Pitch', linewidth=2.0, alpha=0.8)
-    line_i_yaw, = ax_imu.plot([], [], 'b-', label='Yaw', linewidth=2.0, alpha=0.8)
     ax_imu.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
-    ax_imu.set_title('IMU Orientation (RPY)', fontsize=11, fontweight='bold')
+    ax_imu.set_title('IMU Orientation (RP)', fontsize=11, fontweight='bold')
     ax_imu.set_xlabel('Time (s)', fontsize=9)
     ax_imu.set_ylabel('Angle (rad)', fontsize=9)
     ax_imu.set_xlim(0, WINDOW_DURATION)
     ax_imu.grid(True, alpha=0.3)
     ax_imu.legend(loc='best', fontsize=8)
     axes_list.append(ax_imu)
-    lines_dict[21] = {'i_roll': line_i_roll, 'i_pitch': line_i_pitch, 'i_yaw': line_i_yaw}
+    lines_dict[21] = {'i_roll': line_i_roll, 'i_pitch': line_i_pitch}
     
     # 添加总标题
     fig.suptitle(f'QMini Real-time Joint Data (Last {WINDOW_DURATION}s): Position | Torque | Control Commands | IMU', 

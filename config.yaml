@@ -40,4 +40,4 @@ kd: [ 0.05,0.05,0.05,0.05,0.05, 0.05,0.05,0.05,0.05,0.05 ] #(hip*3+knee*1+ankle*
 
 #log print frequency
 # log_print_frequency: 10.0  # 日志打印频率(Hz)
-log_print_frequency: 10.0
+log_print_frequency: 50.0
