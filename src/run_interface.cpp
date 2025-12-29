@@ -3,8 +3,8 @@
 int main(int argc, char const *argv[]) {
     std::cout << "Usage networkInterface: " << "lo of Q1 robot " << std::endl;
     std::string networkInterface = "lo";
-    G1 g1(networkInterface, true);  // 设置为true启用测试模式（键盘控制）
-
+    // G1 g1(networkInterface, true);  // 设置为true启用测试模式（键盘控制）
+    G1 g1(networkInterface, false);
     while (true) sleep(10);
 
     return 0;
