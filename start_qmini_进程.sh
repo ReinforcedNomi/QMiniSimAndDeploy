@@ -8,6 +8,8 @@ sudo chmod 777 /dev/serial/by-id/*
 export LD_LIBRARY_PATH="${SCRIPT_DIR}/install/aarch64/lib/:$LD_LIBRARY_PATH"
 
 # 运行程序（使用绝对路径） 修正路径 不是x86_64
-# 测试模式需要键盘输入，所以在前台运行，将标准输出和标准错误都重定向到日志文件（覆盖模式，每次运行重新开始）
-"${SCRIPT_DIR}/install/x64/bin/run_interface" > "${SCRIPT_DIR}/qmini_log.log" 2>&1
+# 测试模式需要键盘输入，所以在前台运行
+# 使用tee命令同时输出到终端和日志文件（覆盖模式，每次运行重新开始）
+# 2>&1 将标准错误重定向到标准输出，然后通过tee同时显示在终端和写入日志文件
+"${SCRIPT_DIR}/install/x64/bin/run_interface" 2>&1 | tee "${SCRIPT_DIR}/qmini_log.log"
 
