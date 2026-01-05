@@ -20,6 +20,7 @@ import os
 from datetime import datetime
 import time
 import yaml
+import pandas as pd
 
 # 设置中文字体支持
 rcParams['font.sans-serif'] = ['DejaVu Sans', 'SimHei', 'Arial Unicode MS']
@@ -443,7 +444,7 @@ def plot_joint_data(q_data, n_data, f_data=None, c_data=None, i_data=None, save_
         print(f"图片已保存到: {save_path}")
     
     # 显示图片
-    plt.show()
+    # plt.show()
 
 def update_real_time_plot(frame, log_file_path, axes_list, lines_dict):
     """
@@ -760,10 +761,141 @@ def plot_all_joints_together(q_data, n_data, f_data=None, save_path=None):
     
     plt.show()
 
+
+def save_joint_data_to_csv(q_data, n_data, f_data=None, c_data=None, i_data=None, save_path=None, config_path='config.yaml'):
+    """
+    将关节相关数据（位置、目标位置、扭矩、控制指令、IMU）保存到CSV文件
+    
+    Args:
+        q_data: Q数据列表（当前位置）
+        n_data: N数据列表（目标位置）
+        f_data: F数据列表（实时扭矩，可选）
+        c_data: C数据列表（控制指令，可选）
+        i_data: I数据列表（IMU数据，可选）
+        save_path: CSV文件保存路径（可选，若为None则不保存，打印提示信息）
+        config_path: config.yaml文件路径（兼容绘图函数入参，本函数暂不使用该参数）
+    """
+    # 1. 校验核心数据是否存在
+    if not q_data or not n_data:
+        print("错误: 没有核心数据（Q/N）可保存")
+        return
+    
+    # 2. 转换为numpy数组并统一数据长度
+    q_array = np.array(q_data)
+    n_array = np.array(n_data)
+    
+    # 取Q和N数据的最小长度作为基准长度
+    min_len = min(len(q_array), len(n_array))
+    q_array = q_array[:min_len]
+    n_array = n_array[:min_len]
+    
+    # 3. 处理各可选数据，统一长度并兼容缺失情况
+    # 处理F数据（扭矩，10个关节）
+    f_array = None
+    if f_data and len(f_data) > 0:
+        f_array = np.array(f_data)
+        # 截断或填充至基准长度
+        if len(f_array) > min_len:
+            f_array = f_array[:min_len]
+        elif len(f_array) < min_len:
+            # 用NaN填充不足的部分，保持形状为 (min_len, 10)
+            f_padded = np.full((min_len, 10), np.nan)
+            f_padded[:len(f_array)] = f_array
+            f_array = f_padded
+    else:
+        # 若无F数据，创建全NaN数组占位
+        f_array = np.full((min_len, 10), np.nan)
+    
+    # 处理C数据（控制指令，2维：前进指令等）
+    c_array = None
+    if c_data and len(c_data) > 0:
+        c_array = np.array(c_data)
+        if len(c_array) > min_len:
+            c_array = c_array[:min_len]
+        elif len(c_array) < min_len:
+            c_padded = np.full((min_len, 2), np.nan)
+            c_padded[:len(c_array)] = c_array
+            c_array = c_padded
+    else:
+        c_array = np.full((min_len, 2), np.nan)
+    
+    # 处理I数据（IMU数据，3维：Roll/Pitch等）
+    i_array = None
+    if i_data and len(i_data) > 0:
+        i_array = np.array(i_data)
+        if len(i_array) > min_len:
+            i_array = i_array[:min_len]
+        elif len(i_array) < min_len:
+            i_padded = np.full((min_len, 3), np.nan)
+            i_padded[:len(i_array)] = i_array
+            i_array = i_padded
+    else:
+        i_array = np.full((min_len, 3), np.nan)
+    
+    # 4. 构造列名（与数据对应，便于读取识别）
+    # Q数据列名（当前位置）
+    q_columns = [f'Q_Joint_{i} (Current_Position_rad)' for i in range(10)]
+    # N数据列名（目标位置）
+    n_columns = [f'N_Joint_{i} (Target_Position_rad)' for i in range(10)]
+    # F数据列名（扭矩）
+    f_columns = [f'F_Joint_{i} (Torque_Nm)' for i in range(10)]
+    # C数据列名（控制指令）
+    c_columns = ['C_Forward (vx_m/s)', 'C_Other (Reserved)']
+    # I数据列名（IMU数据）
+    i_columns = ['I_Roll (rad)', 'I_Pitch (rad)', 'I_Yaw (Reserved_rad)']
+    # 时间轴列名
+    time_column = ['time']
+    
+    # 5. 构造数据字典，用于转换为DataFrame
+    data_dict = {}
+    # 添加时间轴
+    time_axis = np.arange(min_len)
+    data_dict[time_column[0]] = time_axis
+    
+    # 添加Q数据
+    for col_idx, col_name in enumerate(q_columns):
+        data_dict[col_name] = q_array[:, col_idx]
+    
+    # 添加N数据
+    for col_idx, col_name in enumerate(n_columns):
+        data_dict[col_name] = n_array[:, col_idx]
+    
+    # 添加F数据
+    for col_idx, col_name in enumerate(f_columns):
+        data_dict[col_name] = f_array[:, col_idx]
+    
+    # 添加C数据
+    for col_idx, col_name in enumerate(c_columns):
+        data_dict[col_name] = c_array[:, col_idx]
+    
+    # 添加I数据
+    for col_idx, col_name in enumerate(i_columns):
+        data_dict[col_name] = i_array[:, col_idx]
+    
+    # 6. 转换为Pandas DataFrame（便于保存为CSV）
+    df = pd.DataFrame(data_dict)
+    
+    # 7. 保存CSV文件
+    if save_path is not None and save_path.strip() != "":
+        # 确保保存目录存在
+        save_dir = os.path.dirname(save_path)
+        if save_dir and not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+        
+        # 保存CSV，不保留行索引，编码为UTF-8（便于跨平台读取）
+        df.to_csv(save_path, index=False, encoding='utf-8')
+        print(f"成功: 关节数据已保存至CSV文件，路径：{save_path}")
+    else:
+        print("提示: 未指定保存路径（save_path=None），未保存CSV文件")
+        # 可选：若未指定路径，打印前5行数据预览
+        print("数据预览（前5行）：")
+        print(df.head())
+
+
 def main():
     """主函数"""
     # 默认日志文件路径
-    default_log_path = '/home/qmini/Programs/QMiniSimAndDeploy/qmini_log.log'
+    default_log_path = 'qmini_log.log'
     
     # 检查命令行参数
     if len(sys.argv) > 1:
@@ -852,7 +984,13 @@ def main():
         # 绘制所有关节在一张图上（可选，注释掉以禁用）
         # print("正在绘制所有关节波形图...")
         # plot_all_joints_together(q_data, n_data, f_data, save_path)
+        
+        # 转成 csv
+        csv_filename = f'Joint_log_{timestamp}.csv'
+        csv_save_path = os.path.join(log_dir, csv_filename)
+        save_joint_data_to_csv(q_data, n_data, f_data, c_data, i_data, csv_save_path, config_path)
+        
+        
 
 if __name__ == '__main__':
     main()
-
