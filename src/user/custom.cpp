@@ -109,10 +109,11 @@ void G1::Control() {
         cout << std::fixed << std::setprecision(2) << rlController->base_rpy[2];
         cout << "]" << endl;
         
-        // C: 控制指令 (vx_cmd, yr_cmd)
+        // C: 控制指令 (vx_cmd, yr_cmd, mode)
         cout << "C:[";
         cout << std::fixed << std::setprecision(2) << rlController->target_command[0] << ",";
-        cout << std::fixed << std::setprecision(2) << rlController->target_command[1];
+        cout << std::fixed << std::setprecision(2) << rlController->target_command[1] << ",";
+        cout << current_mode;
         cout << "]" << endl;
     }
 }

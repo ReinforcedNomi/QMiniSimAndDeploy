@@ -5,7 +5,7 @@
 Q: 当前关节位置（蓝色）
 N: 目标关节位置（红色）
 F: 实时输出扭矩（绿色）
-C: 控制指令（前进指令-紫色，旋转指令-青色）
+C: 控制指令（前进指令-紫色，旋转指令-青色，模式-青色虚线）
 
 实时显示最近30秒的数据，自动更新
 """
@@ -33,7 +33,7 @@ _data_cache = {
     'q_data': [],
     'n_data': [],
     'f_data': [],
-    'c_data': [],  # 控制指令数据 [前进指令, 旋转指令]
+    'c_data': [],  # 控制指令数据 [前进指令, 旋转指令, 模式(ASCII)]
     'i_data': [],  # IMU数据 [roll, pitch, yaw]
     'timestamps': []  # 记录每条数据的时间戳
 }
@@ -91,7 +91,9 @@ def parse_log_file_incremental(log_file_path):
     q_pattern = re.compile(r'Q:\s*\[\s*([-\d\.\s,]+)\s*\]')
     n_pattern = re.compile(r'N:\s*\[\s*([-\d\.\s,]+)\s*\]')
     f_pattern = re.compile(r'F:\s*\[\s*([-\d\.\s,]+)\s*\]')
-    c_pattern = re.compile(r'C:\s*\[\s*([-\d\.\s,]+)\s*\]')
+    # C数据格式：C:[vx_cmd, yr_cmd, mode]，其中mode是字符
+    # 匹配方括号内的所有内容（包括数字和字符）
+    c_pattern = re.compile(r'C:\s*\[\s*([^\]]+)\s*\]')
     i_pattern = re.compile(r'I:\s*\[\s*([-\d\.\s,]+)\s*\]')
     
     try:
@@ -126,13 +128,35 @@ def parse_log_file_incremental(log_file_path):
                     if len(f_values) == 10:
                         new_data['f_data'].append(f_values)
                 
-                # 匹配 C 数据（控制指令：前进指令, 旋转指令）
+                # 匹配 C 数据（控制指令：前进指令, 旋转指令, 模式）
                 c_match = c_pattern.search(line)
                 if c_match:
                     c_str = c_match.group(1)
-                    c_values = [float(x.strip()) for x in c_str.split(',') if x.strip()]
-                    if len(c_values) == 2:
-                        new_data['c_data'].append(c_values)
+                    c_parts = [x.strip() for x in c_str.split(',') if x.strip()]
+                    if len(c_parts) >= 2:
+                        try:
+                            # 前两个值是浮点数（vx_cmd, yr_cmd）
+                            vx_cmd = float(c_parts[0])
+                            yr_cmd = float(c_parts[1])
+                            # 第三个值是模式字符（如果有）
+                            mode = c_parts[2] if len(c_parts) >= 3 else '0'
+                            # 将模式字符转换为整数：'0'-'9'转换为0-9，其他字符转换为ASCII码值
+                            if isinstance(mode, str) and len(mode) == 1:
+                                if mode.isdigit():
+                                    mode_value = int(mode)
+                                else:
+                                    mode_value = ord(mode)
+                            else:
+                                mode_value = 0
+                            new_data['c_data'].append([vx_cmd, yr_cmd, mode_value])
+                        except (ValueError, IndexError):
+                            # 如果解析失败，尝试只读取前两个值（兼容旧格式）
+                            try:
+                                vx_cmd = float(c_parts[0])
+                                yr_cmd = float(c_parts[1])
+                                new_data['c_data'].append([vx_cmd, yr_cmd, 0])
+                            except (ValueError, IndexError):
+                                pass
                 
                 # 匹配 I 数据（IMU：roll, pitch, yaw）
                 i_match = i_pattern.search(line)
@@ -176,7 +200,9 @@ def parse_log_file(log_file_path):
     q_pattern = re.compile(r'Q:\s*\[\s*([-\d\.\s,]+)\s*\]')
     n_pattern = re.compile(r'N:\s*\[\s*([-\d\.\s,]+)\s*\]')
     f_pattern = re.compile(r'F:\s*\[\s*([-\d\.\s,]+)\s*\]')
-    c_pattern = re.compile(r'C:\s*\[\s*([-\d\.\s,]+)\s*\]')
+    # C数据格式：C:[vx_cmd, yr_cmd, mode]，其中mode是字符
+    # 匹配方括号内的所有内容（包括数字和字符）
+    c_pattern = re.compile(r'C:\s*\[\s*([^\]]+)\s*\]')
     i_pattern = re.compile(r'I:\s*\[\s*([-\d\.\s,]+)\s*\]')
     
     try:
@@ -208,13 +234,35 @@ def parse_log_file(log_file_path):
                     if len(f_values) == 10:
                         f_data.append(f_values)
                 
-                # 匹配 C 数据（控制指令：前进指令, 旋转指令）
+                # 匹配 C 数据（控制指令：前进指令, 旋转指令, 模式）
                 c_match = c_pattern.search(line)
                 if c_match:
                     c_str = c_match.group(1)
-                    c_values = [float(x.strip()) for x in c_str.split(',') if x.strip()]
-                    if len(c_values) == 2:
-                        c_data.append(c_values)
+                    c_parts = [x.strip() for x in c_str.split(',') if x.strip()]
+                    if len(c_parts) >= 2:
+                        try:
+                            # 前两个值是浮点数（vx_cmd, yr_cmd）
+                            vx_cmd = float(c_parts[0])
+                            yr_cmd = float(c_parts[1])
+                            # 第三个值是模式字符（如果有）
+                            mode = c_parts[2] if len(c_parts) >= 3 else '0'
+                            # 将模式字符转换为整数：'0'-'9'转换为0-9，其他字符转换为ASCII码值
+                            if isinstance(mode, str) and len(mode) == 1:
+                                if mode.isdigit():
+                                    mode_value = int(mode)
+                                else:
+                                    mode_value = ord(mode)
+                            else:
+                                mode_value = 0
+                            c_data.append([vx_cmd, yr_cmd, mode_value])
+                        except (ValueError, IndexError):
+                            # 如果解析失败，尝试只读取前两个值（兼容旧格式）
+                            try:
+                                vx_cmd = float(c_parts[0])
+                                yr_cmd = float(c_parts[1])
+                                c_data.append([vx_cmd, yr_cmd, 0])
+                            except (ValueError, IndexError):
+                                pass
                 
                 # 匹配 I 数据（IMU：roll, pitch, yaw）
                 i_match = i_pattern.search(line)
@@ -396,11 +444,12 @@ def plot_joint_data(q_data, n_data, f_data=None, c_data=None, i_data=None, save_
         if len(c_array) > min_len:
             c_array = c_array[:min_len]
         elif len(c_array) < min_len:
-            c_padded = np.full((min_len, 2), np.nan)
+            # C数据现在有3个值：vx_cmd, yr_cmd, mode
+            c_padded = np.full((min_len, 3), np.nan)
             c_padded[:len(c_array)] = c_array
             c_array = c_padded
         
-        # 第一列：前进指令
+        # 第一列：前进指令（模式值仅保存在CSV中，不显示在图表中）
         ax_cmd1 = plt.subplot(11, 2, 21)
         ax_cmd1.plot(time_axis, c_array[:, 0], 'm-', label='Forward Command (vx)', linewidth=2.0, alpha=0.8)
         ax_cmd1.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
@@ -641,7 +690,7 @@ def plot_real_time(log_file_path, config_path='config.yaml'):
         axes_list.append(ax2)
         lines_dict[i * 2 + 2] = {'f': line_f}
     
-    # 第11行：第一列显示前进指令，第二列显示IMU数据
+    # 第11行：第一列显示前进指令（模式值仅保存在CSV中，不显示在图表中），第二列显示IMU数据
     ax_cmd1 = plt.subplot(11, 2, 21)
     line_c_vx, = ax_cmd1.plot([], [], 'm-', label='Forward Command (vx)', linewidth=2.0, alpha=0.8)
     ax_cmd1.axhline(y=0, color='k', linestyle=':', linewidth=0.5, alpha=0.5)
@@ -806,18 +855,18 @@ def save_joint_data_to_csv(q_data, n_data, f_data=None, c_data=None, i_data=None
         # 若无F数据，创建全NaN数组占位
         f_array = np.full((min_len, 10), np.nan)
     
-    # 处理C数据（控制指令，2维：前进指令等）
+    # 处理C数据（控制指令，3维：前进指令, 旋转指令, 模式）
     c_array = None
     if c_data and len(c_data) > 0:
         c_array = np.array(c_data)
         if len(c_array) > min_len:
             c_array = c_array[:min_len]
         elif len(c_array) < min_len:
-            c_padded = np.full((min_len, 2), np.nan)
+            c_padded = np.full((min_len, 3), np.nan)
             c_padded[:len(c_array)] = c_array
             c_array = c_padded
     else:
-        c_array = np.full((min_len, 2), np.nan)
+        c_array = np.full((min_len, 3), np.nan)
     
     # 处理I数据（IMU数据，3维：Roll/Pitch等）
     i_array = None
@@ -840,7 +889,7 @@ def save_joint_data_to_csv(q_data, n_data, f_data=None, c_data=None, i_data=None
     # F数据列名（扭矩）
     f_columns = [f'F_Joint_{i} (Torque_Nm)' for i in range(10)]
     # C数据列名（控制指令）
-    c_columns = ['C_Forward (vx_m/s)', 'C_Other (Reserved)']
+    c_columns = ['C_Forward (vx_m/s)', 'C_Rotate (yr_rad/s)', 'C_Mode']
     # I数据列名（IMU数据）
     i_columns = ['I_Roll (rad)', 'I_Pitch (rad)', 'I_Yaw (Reserved_rad)']
     # 时间轴列名

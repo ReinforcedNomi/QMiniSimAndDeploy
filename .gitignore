@@ -85,7 +85,7 @@ __pycache__/
 # Log files
 *.log
 qmini_log.log
-
+*.csv
 # Test files
 *.gcov
 *.gcda
