@@ -69,6 +69,28 @@ void RLController::rl_control() {
     net_out = onnxInference.inference(motion_session, get_observation());
     action_increment = transform(net_out);
     joint_increment_control(action_increment);
+    
+    // 切换到RL模式时，如果目标位置距离当前位置太远，进行插值限制
+    // 保证每次步进不超过总行程的10%
+    if (counter_rl <= 10) {  // 前10帧进行插值限制
+        for (int i = 0; i < NUM_JOINTS; ++i) {
+            float diff = joint_act[i] - joint_pos[i];
+            float joint_range = act_pos_high[i] - act_pos_low[i];
+            float max_step = 0.1f * joint_range;  // 最大步进为总行程的10%
+            
+            if (fabs(diff) > max_step) {
+                // 限制步进，使joint_act不超过当前位置的10%总行程
+                if (diff > 0) {
+                    joint_act[i] = joint_pos[i] + max_step;
+                } else {
+                    joint_act[i] = joint_pos[i] - max_step;
+                }
+            }
+        }
+        // 再次应用限位保护
+        joint_act = joint_act.cwiseMax(act_pos_low).cwiseMin(act_pos_high);
+    }
+    
     _rl_time_step = get_true_loop_period();
 }
 
