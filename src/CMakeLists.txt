@@ -18,7 +18,8 @@ add_executable(
     run_interface 
         "${CMAKE_CURRENT_LIST_DIR}/run_interface.cpp"
         "${CMAKE_CURRENT_LIST_DIR}/user/custom.cpp"
-        "${CMAKE_CURRENT_LIST_DIR}/user/rl_controller.cpp")
+        "${CMAKE_CURRENT_LIST_DIR}/user/rl_controller.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/user/custom_rl_controller.cpp")
 
 # add_executable()
 

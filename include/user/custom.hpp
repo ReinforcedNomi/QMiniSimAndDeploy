@@ -25,6 +25,7 @@
 #include "user/mode_switcher.h"
 #include "user/data_report.h"
 #include "utils/read_txt_file.h"
+#include "user/custom_rl_controller.h"
 
 #include "Motor_thread.hpp"
 
@@ -116,6 +117,7 @@ class G1 {
     
         virtual ~G1() {
             delete rlController;
+            delete customRLController;
         };
     
     public:
@@ -127,6 +129,7 @@ class G1 {
         XRockerGamepad xRockerGamepad;
     
         RLController *rlController = nullptr;
+        CustomRLController *customRLController = nullptr;  // 自定义RL控制器
         IMUReader imuReader;
     
         MotorController Motor_control;

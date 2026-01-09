@@ -2,6 +2,9 @@
 // Created by cyy on 2020/12/27.
 //
 
+#ifndef ONNX_INFERENCE_H
+#define ONNX_INFERENCE_H
+
 #include <iostream>
 #include <vector>
 #include <chrono>
@@ -58,3 +61,5 @@ public:
         return net_out_action;
     }
 };
+
+#endif // ONNX_INFERENCE_H

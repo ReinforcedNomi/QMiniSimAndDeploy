@@ -20,7 +20,15 @@ void G1::ModeProcess() {
         /// mode transition
         relative_time = 0.;
         current_mode = selected_mode;
-        rlController->reset(_is_test_local);
+        if (current_mode == 'C' || current_mode == 'c') {
+            // 切换到自定义RL模式
+            if (customRLController != nullptr) {
+                customRLController->reset();
+            }
+        } else {
+            // 切换到其他模式
+            rlController->reset(_is_test_local);
+        }
     }
     rlController->task_mode = modeSwitcher.rl_task_mode;
 }
@@ -52,6 +60,20 @@ void G1::Control() {
                 rlController->sim_gait_control();
             else
                 rlController->sin_control(0.2, 2., relative_time);
+            break;
+        case 'C':
+        case 'c':
+            /// 自定义RL控制模式
+            if (customRLController != nullptr) {
+                customRLController->convert_dds_state2rl_state();
+                customRLController->custom_rl_control();
+                if (customRLController->counter_rl < 2)
+                    rlController->stand_control(ratio);  // 前两帧先执行站立控制
+                customRLController->set_joint_act2dds_motor_command();
+            } else {
+                // 如果自定义控制器未初始化，回退到站立模式
+                rlController->stand_control(ratio);
+            }
             break;
         default: /// case '1'
             rlController->stand_control(ratio);

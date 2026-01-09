@@ -98,6 +98,8 @@ public:
         } else if ((int) jsreader.But[7] == 1) {
             rl_task_mode = 9;
             key = '9';
+        } else if ((int) jsreader.But[5] == 1) { ///RB 自定义RL模式
+            key = 'C';
         } else if ((int) jsreader.But[1] == 1) { key = 'q'; } //B exit
         if (key == 'q')
             return key;
@@ -164,6 +166,10 @@ public:
                 break;
             case '4':
                 printf("\033[32mCurrent mode: sin waving(step in place)...\n\033[0m");
+                break;
+            case 'C':
+            case 'c':
+                printf("\033[32mCurrent mode: Custom RL control...\n\033[0m");
                 break;
             default:
                 break;
