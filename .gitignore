@@ -59,7 +59,7 @@ Makefile
 !cmake_toolchain/*.cmake
 
 # Install directories
-install/
+# install/
 jetson_nano_rootfs/
 aarch64--glibc--stable-2022.08-1/
 third_party/
